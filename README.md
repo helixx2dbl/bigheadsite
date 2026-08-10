@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# BigHead Builder — Landing Page
 
-## Getting Started
+Next.js marketing site for BigHead Builder. Scroll-driven hero inspired by [Alterra Mountain Co](https://www.alterramtn.co/en), brand colors pulled from the sticker logo, photos from `/branding/photos`.
 
-First, run the development server:
+## Run locally
 
 ```bash
+cd web
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## What's on the page
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Hero** — full-bleed lifestyle photo that shrinks into a tilted card while the headline (`Your face. Way bigger.`) reveals behind it
+2. **Marquee** — scrolling tagline strip
+3. **Intro** — pitch + overlapping photo stack
+4. **How it works** — four steps matching the checkout flow (upload → preview → build → ship)
+5. **Referral program** — QR sticker pitch: $1 back per referred head until fully refunded, then 100 points per head, 2,500 points = $25 Visa gift card
+6. **Gallery** — horizontal scroll-scrubbed Polaroid cards (dupes reused until more photos arrive)
+7. **CTA** — "Build your BigHead" button (wire to the real app when ready)
 
-## Learn More
+## Brand tokens
 
-To learn more about Next.js, take a look at the following resources:
+Defined in `app/globals.css`:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Token | Hex | Use |
+| --- | --- | --- |
+| cream | `#faf9eb` | page background |
+| berry | `#b92a56` | CTAs, accent headline |
+| teal | `#2a7d72` | accents, marquee |
+| ink | `#26343a` | body / headlines |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Logo lives at `public/brand/logo.png`. Photos at `public/photos/`.
