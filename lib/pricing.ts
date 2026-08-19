@@ -1,10 +1,10 @@
-// Placeholder commercial details — swap when real pricing ships.
+// Placeholder commercial details: swap when real pricing ships.
 // "From" / "as soon as" numbers assume rush printing + expedited shipping
 // are available; standard delivery can take longer.
 export const SIZE_INCHES = 24;
 export const PRICE_FROM = 24;
-export const SHIP_DAYS_LABEL = "Can ship as soon as today!";
-export const BUILD_DAYS_LABEL = "1–2 days";
+export const SHIP_DAYS_LABEL = "Ships in 1-2 business days";
+export const BUILD_DAYS_LABEL = "1-2 days";
 export const RUSH_AVAILABLE = true;
 
 export const QUANTITY_TIERS = [

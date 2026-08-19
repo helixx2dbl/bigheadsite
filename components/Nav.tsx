@@ -56,7 +56,7 @@ export default function Nav() {
               type="button"
               onClick={() => setLoggedIn(false)}
               title="Log out"
-              aria-label="Account — click to log out"
+              aria-label="Account, click to log out"
               className="flex h-9 w-9 items-center justify-center overflow-hidden rounded-full border-2 border-berry bg-teal-deep shadow-md transition-transform hover:scale-105"
             >
               <span className="text-xs font-black tracking-tight text-cream">

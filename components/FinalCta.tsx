@@ -65,7 +65,7 @@ export default function FinalCta() {
           </h2>
           <p className="mx-auto mt-8 max-w-xl text-lg font-semibold text-cream/85">
             Building your BigHead takes about two minutes. Upload a photo, watch
-            the magic cut-out, and we handle the rest — QR referral stickers
+            the magic cut-out, and we handle the rest: QR referral stickers
             included, so your head can start paying for itself.
           </p>
           <p className="mx-auto mt-5 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-sm font-black text-cream md:text-base">
@@ -77,7 +77,7 @@ export default function FinalCta() {
             <span className="text-cream/35" aria-hidden>
               ·
             </span>
-            <span>ships {SHIP_DAYS_LABEL}</span>
+            <span>{SHIP_DAYS_LABEL}</span>
           </p>
           <a
             href={BUILD_HREF}
@@ -87,7 +87,7 @@ export default function FinalCta() {
           </a>
           <p className="mx-auto mt-6 max-w-md text-sm font-bold leading-snug text-cream/75">
             Need it fast? Rush printing + expedited shipping available. Arrive
-            before your event — or we rush a replacement / refund you.
+            before your event, or we rush a replacement / refund you.
           </p>
         </div>
       </motion.div>

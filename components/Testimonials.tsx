@@ -138,7 +138,7 @@ export default function Testimonials() {
                   &ldquo;{t.quote}&rdquo;
                 </blockquote>
                 <figcaption className="mt-5 text-sm font-black uppercase tracking-[0.2em] text-berry">
-                  — {t.tag}
+                  {t.tag}
                 </figcaption>
                 <div className="mt-5 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 border-t-2 border-ink/5 pt-4 md:justify-start">
                   <MetaItem icon="head">

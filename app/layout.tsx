@@ -15,7 +15,7 @@ const pacifico = Pacifico({
 });
 
 export const metadata: Metadata = {
-  title: "BigHead Builder — Big Heads on a Stick",
+  title: "BigHead Builder | Big Heads on a Stick",
   description:
     "Turn any photo into a giant head on a stick. Upload a photo, we cut out the head, hand-assemble it, and ship it to your door.",
 };

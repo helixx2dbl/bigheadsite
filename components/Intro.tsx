@@ -32,14 +32,14 @@ export default function Intro() {
             Turn any photo into a giant head on a stick.
           </motion.h2>
           <motion.p {...fadeUp} className="mt-6 text-lg font-semibold text-ink/70">
-            Race day, graduation, bachelor party, little league — nothing says
+            Race day, graduation, bachelor party, little league: nothing says
             &ldquo;we came for you&rdquo; like your face, giant, on a stick.
             Upload a photo and our builder cuts out the head automatically,
             shows you a live preview, and we hand-assemble the real thing and
             ship it to your door.
           </motion.p>
 
-          {/* Size / price / speed — pulled out of the FAQ */}
+          {/* Size / price / speed: pulled out of the FAQ */}
           <motion.div
             {...fadeUp}
             className="mt-8 grid grid-cols-3 gap-3 border-y-2 border-ink/10 py-5"
@@ -49,7 +49,7 @@ export default function Intro() {
                 {SIZE_INCHES}&quot;
               </p>
               <p className="mt-1 text-xs font-bold uppercase tracking-wide text-ink/55 md:text-sm">
-                tall — 3× life size
+                tall, 3× life size
               </p>
             </div>
             <div>
@@ -62,7 +62,7 @@ export default function Intro() {
             </div>
             <div>
               <p className="text-2xl font-black text-berry md:text-3xl">
-                2–3 days
+                2-3 days
               </p>
               <p className="mt-1 text-xs font-bold uppercase tracking-wide text-ink/55 md:text-sm">
                 with rush shipping
@@ -71,47 +71,16 @@ export default function Intro() {
           </motion.div>
 
           <div className="mt-8 flex flex-wrap gap-x-6 gap-y-3">
-            {[
-              { label: "Auto head cut-out" },
-              { label: "Live preview" },
-              { label: "Ships to you" },
-              { label: "Group split-pay", special: true },
-            ].map((chip, i) => (
-              <motion.span
-                key={chip.label}
-                initial={{ opacity: 0, x: 28 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 1 }}
-                transition={{ duration: 0.45, delay: i * 0.18, ease: [0.22, 1, 0.36, 1] }}
-                className={`relative inline-flex items-center gap-2 font-bold ${
-                  chip.special
-                    ? "gap-2.5 text-base text-berry"
-                    : "text-sm text-teal-deep"
-                }`}
-              >
-                {chip.special ? (
-                  <svg
-                    viewBox="0 0 28 28"
-                    className="h-7 w-7 shrink-0 -rotate-12 drop-shadow-sm"
-                    aria-hidden
-                  >
-                    <polygon
-                      fill="var(--berry)"
-                      points="14,0 16.7,3.9 21,1.9 21.4,6.6 26.1,7 24.1,11.3 28,14 24.1,16.7 26.1,21 21.4,21.4 21,26.1 16.7,24.1 14,28 11.3,24.1 7,26.1 6.6,21.4 1.9,21 3.9,16.7 0,14 3.9,11.3 1.9,7 6.6,6.6 7,1.9 11.3,3.9"
-                    />
-                    <text
-                      x="14"
-                      y="14.5"
-                      textAnchor="middle"
-                      dominantBaseline="central"
-                      fill="var(--cream)"
-                      fontSize="8"
-                      fontWeight="900"
-                    >
-                      NEW
-                    </text>
-                  </svg>
-                ) : (
+            {["Auto head cut-out", "Live preview", "Ships to you"].map(
+              (label, i) => (
+                <motion.span
+                  key={label}
+                  initial={{ opacity: 0, x: 28 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, amount: 1 }}
+                  transition={{ duration: 0.45, delay: i * 0.18, ease: [0.22, 1, 0.36, 1] }}
+                  className="inline-flex items-center gap-2 text-sm font-bold text-teal-deep"
+                >
                   <svg
                     className="h-4.5 w-4.5 shrink-0 text-teal"
                     viewBox="0 0 18 18"
@@ -127,13 +96,10 @@ export default function Intro() {
                       strokeLinejoin="round"
                     />
                   </svg>
-                )}
-                {chip.label}
-                {chip.special && (
-                  <InfoLink faq="split" className="ml-1.5 text-berry" />
-                )}
-              </motion.span>
-            ))}
+                  {label}
+                </motion.span>
+              )
+            )}
           </div>
 
           {/* Quantity framing */}
@@ -152,6 +118,41 @@ export default function Intro() {
                 </span>
               </div>
             ))}
+          </motion.div>
+
+          {/* Group split-pay: question hook then the highlighted pill, inline */}
+          <motion.div
+            {...fadeUp}
+            className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2"
+          >
+            <span className="text-base font-extrabold text-ink">
+              Paying for the whole crew?
+            </span>
+            <span className="inline-flex items-center gap-2.5 rounded-full border border-berry/20 bg-berry/5 px-4 py-2 text-base font-bold text-berry">
+              <svg
+                viewBox="0 0 28 28"
+                className="h-7 w-7 shrink-0 -rotate-12 drop-shadow-sm"
+                aria-hidden
+              >
+                <polygon
+                  fill="var(--berry)"
+                  points="14,0 16.7,3.9 21,1.9 21.4,6.6 26.1,7 24.1,11.3 28,14 24.1,16.7 26.1,21 21.4,21.4 21,26.1 16.7,24.1 14,28 11.3,24.1 7,26.1 6.6,21.4 1.9,21 3.9,16.7 0,14 3.9,11.3 1.9,7 6.6,6.6 7,1.9 11.3,3.9"
+                />
+                <text
+                  x="14"
+                  y="14.5"
+                  textAnchor="middle"
+                  dominantBaseline="central"
+                  fill="var(--cream)"
+                  fontSize="8"
+                  fontWeight="900"
+                >
+                  NEW
+                </text>
+              </svg>
+              Group split-pay
+              <InfoLink faq="split" className="ml-0.5 text-berry" />
+            </span>
           </motion.div>
 
           <motion.div

@@ -7,12 +7,12 @@ export const faqs = [
   {
     id: "size",
     q: "How big are the heads?",
-    a: "Big. Each BigHead is about 24 inches tall — roughly three times life size — printed on rigid, lightweight board and mounted on a sturdy stick. Easy to wave for a whole game, impossible to miss from the bleachers.",
+    a: "Big. Each BigHead is about 24 inches tall, roughly three times life size, printed on rigid, lightweight board and mounted on a sturdy stick. Easy to wave for a whole game, impossible to miss from the bleachers.",
   },
   {
     id: "price",
     q: "How much do they cost?",
-    a: "Heads start at $24 each. Order five or more and they drop to $21 each; twenty or more and you're at $18 each. Shipping is calculated at checkout — rush print + expedited shipping is available if you need it sooner.",
+    a: "Heads start at $24 each. Order five or more and they drop to $21 each; twenty or more and you're at $18 each. Shipping is calculated at checkout. Rush print + expedited shipping is available if you need it sooner.",
   },
   {
     id: "photo",
@@ -22,12 +22,12 @@ export const faqs = [
   {
     id: "shipping",
     q: "How long does shipping take?",
-    a: "Standard is a few days to assemble plus ground shipping. Need it faster? Pick rush printing and expedited shipping at checkout — heads can land in as soon as 2–3 days. Tell us your event date and we'll aim for it; if we miss your window, we rush a replacement or refund you.",
+    a: "Standard is 1-2 business days to package plus 2-5 days of shipping. Need it faster? Pick rush printing and expedited shipping at checkout. Heads can land in as soon as 2-3 days. Tell us your event date and we'll aim for it; if we miss your window, we rush a replacement or refund you.",
   },
   {
     id: "durability",
     q: "Will it survive rain and rowdy crowds?",
-    a: "BigHeads have a weather-resistant coating that shrugs off drizzle, spilled drinks, and confetti. They're built for full seasons of tailgates — just don't use one as a paddle.",
+    a: "BigHeads have a weather-resistant coating that shrugs off drizzle, spilled drinks, and confetti. They're built for full seasons of tailgates. Just don't use one as a paddle.",
   },
   {
     id: "referral",
@@ -37,17 +37,17 @@ export const faqs = [
   {
     id: "group",
     q: "Can I order a bunch for a group?",
-    a: "Absolutely — one order can include as many heads as you want, and per-head pricing drops when you order five or more. The whole crew ships together in one box.",
+    a: "Absolutely. One order can include as many heads as you want, and per-head pricing drops when you order five or more. The whole crew ships together in one box.",
   },
   {
     id: "split",
-    q: "I fronted the group order — how do I get paid back?",
-    a: "After checkout we generate a branded repay link that splits your total per head, shipping included. Send it to the crew: they can pay you back instantly with Venmo, Zelle, or PayPal, or pay through BigHead Builder and we refund that share of your order automatically. The link also carries your order info, so anyone who wants their own head can buy through it — and that purchase refunds you too.",
+    q: "I fronted the group order. How do I get paid back?",
+    a: "After checkout we generate a branded repay link that splits your total per head, shipping included. Send it to the crew: they can pay you back instantly with Venmo, Zelle, or PayPal, or pay through BigHead Builder and we refund that share of your order automatically. The link also carries your order info, so anyone who wants their own head can buy through it, and that purchase refunds you too.",
   },
   {
     id: "pets",
     q: "Does it have to be a human head?",
-    a: "Nope. Dogs, cats, babies, grandma, your fantasy league commissioner — if it has a face, we can put it on a stick.",
+    a: "Nope. Dogs, cats, babies, grandma, your fantasy league commissioner. If it has a face, we can put it on a stick.",
   },
 ];
 
@@ -56,22 +56,37 @@ export default function Faq() {
 
   // Info icons around the site link to #faq-<id>; expand that entry on arrival.
   // The expansion is delayed until the browser's smooth anchor scroll has
-  // finished — a layout change mid-scroll cancels the scroll in Chromium.
+  // finished: a layout change mid-scroll cancels the scroll in Chromium.
   useEffect(() => {
-    let timer: ReturnType<typeof setTimeout>;
+    let openTimer: ReturnType<typeof setTimeout>;
+    let scrollTimer: ReturnType<typeof setTimeout>;
     const openFromHash = () => {
       const match = window.location.hash.match(/^#faq-(.+)$/);
       if (!match) return;
-      const i = faqs.findIndex((f) => f.id === match[1]);
-      if (i !== -1) {
-        clearTimeout(timer);
-        timer = setTimeout(() => setOpen(i), 700);
-      }
+      const id = match[1];
+      const i = faqs.findIndex((f) => f.id === id);
+      if (i === -1) return;
+      clearTimeout(openTimer);
+      clearTimeout(scrollTimer);
+      openTimer = setTimeout(() => {
+        setOpen(i);
+        // The browser's own anchor scroll ran while the entry was still
+        // collapsed, so for entries near the bottom it bottomed out the page
+        // before reaching the top. Opening the panel adds height below, which
+        // frees up the scroll room, so re-run the scroll once the 250ms
+        // expand animation has settled.
+        scrollTimer = setTimeout(() => {
+          document
+            .getElementById(`faq-${id}`)
+            ?.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 300);
+      }, 700);
     };
     openFromHash();
     window.addEventListener("hashchange", openFromHash);
     return () => {
-      clearTimeout(timer);
+      clearTimeout(openTimer);
+      clearTimeout(scrollTimer);
       window.removeEventListener("hashchange", openFromHash);
     };
   }, []);

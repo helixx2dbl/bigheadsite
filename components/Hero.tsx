@@ -79,7 +79,7 @@ export default function Hero() {
 
   return (
     <section className="relative h-screen overflow-hidden bg-cream">
-      {/* Loader — full sticker logo so the brand still gets a beat */}
+      {/* Loader: full sticker logo so the brand still gets a beat */}
       <AnimatePresence>
         {!ready && (
           <motion.div
@@ -115,7 +115,7 @@ export default function Hero() {
         )}
       </AnimatePresence>
 
-      {/* Photo — framed card that fades in once loaded */}
+      {/* Photo: framed card that fades in once loaded */}
       <motion.div
         initial={false}
         animate={

@@ -57,3 +57,57 @@ body {
 .animate-marquee {
   animation: marquee 30s linear infinite;
 }
+
+/* Readable body styling for the policy / legal pages. Authored so those pages
+   can be written as plain semantic HTML (h2, h3, p, ul, a). */
+.prose-policy h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--ink);
+  margin-top: 2.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose-policy h3 {
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: var(--teal-deep);
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.prose-policy p,
+.prose-policy li {
+  color: color-mix(in srgb, var(--ink) 72%, transparent);
+  font-weight: 600;
+  line-height: 1.7;
+}
+
+.prose-policy p {
+  margin-bottom: 1rem;
+}
+
+.prose-policy ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.prose-policy li {
+  margin-bottom: 0.4rem;
+}
+
+.prose-policy a {
+  color: var(--berry);
+  font-weight: 800;
+  text-decoration: underline;
+}
+
+.prose-policy strong {
+  color: var(--ink);
+  font-weight: 800;
+}
+
+.prose-policy h2:first-child {
+  margin-top: 0;
+}

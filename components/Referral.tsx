@@ -9,7 +9,7 @@ const ladder = [
   {
     n: "1",
     title: "Every scan pays you back",
-    body: "Each head bought with your code takes a dollar off yours — until your order is completely free.",
+    body: "Each head bought with your code takes a dollar off yours, until your order is completely free.",
   },
   {
     n: "2",
@@ -19,7 +19,7 @@ const ladder = [
   {
     n: "3",
     title: "Then... Profit??",
-    body: "Spend it on more heads. Spend it on a jet ski. Live más, baja blast at will — we're not your financial advisor.",
+    body: "Spend it on more heads. Spend it on a jet ski. Live más, baja blast at will. We're not your financial advisor.",
   },
 ];
 
@@ -27,7 +27,7 @@ const answers = [
   "Scan my code and get one!",
   "That's me. I'm the head guy.",
   "One scan and this could be you.",
-  "Scan it — we could be twinsies.",
+  "Scan it, we could be twinsies.",
   "My face literally pays for itself.",
   "The QR code's on the stick, chief.",
   "Every scan gets me closer to a jet ski.",
@@ -96,7 +96,7 @@ export default function Referral() {
               Every head ships with your own QR code.
             </motion.h2>
             <motion.p {...fadeUp} className="mt-6 text-lg font-semibold text-cream/75">
-              Pick a referral handle — like a gamertag — and we print it as QR
+              Pick a referral handle, like a gamertag, and we print it as QR
               stickers on your order. Big heads attract big questions, and when
               someone asks, the answer is easy:
             </motion.p>

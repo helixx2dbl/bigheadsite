@@ -9,7 +9,7 @@ const steps = [
   {
     n: "01",
     title: "Upload a photo",
-    body: "Any clear shot works. Our builder cuts out the head automatically — it takes about 30 seconds.",
+    body: "Any clear shot works. Our builder cuts out the head automatically. It only takes seconds.",
     accent: "bg-berry",
     icon: "/icons/upload.svg",
     faq: "photo",
@@ -18,7 +18,7 @@ const steps = [
   },
   {
     n: "02",
-    title: "Preview it big",
+    title: "Preview it BIG",
     body: "See your head on the stick instantly. Not feeling it? Swap in a new photo and try again.",
     accent: "bg-teal",
     icon: "/icons/cutout.svg",
@@ -28,7 +28,7 @@ const steps = [
   {
     n: "03",
     title: "We build it",
-    body: "Every BigHead is about 24\" tall — printed premium and hand-assembled on a sturdy stick that survives the wildest cheering.",
+    body: "Every BigHead is about 24\" tall, printed on premium corrugated stock with a sturdy stick that survives the wildest cheering.",
     accent: "bg-berry",
     icon: "/icons/printing.svg",
     faq: "size",
@@ -38,7 +38,7 @@ const steps = [
   {
     n: "04",
     title: "It ships to you",
-    body: "Standard delivery is quick — and rush printing + expedited shipping can get a head to your door in as soon as 2–3 days. Order one or a whole crowd.",
+    body: "We package and ship your head in 1-2 business days. Shipping takes 2-5 days. Order one or a whole crowd.",
     accent: "bg-teal",
     icon: "/icons/shipping.svg",
     faq: "shipping",
@@ -122,13 +122,13 @@ export default function HowItWorks() {
             <h3 className="text-2xl font-black text-cream md:text-3xl">
               Front the order,
               <br />
-              get paid back fast.{" "}
-              <InfoLink faq="split" className="ml-1 text-cream" />
+              get paid back fast.
+              <InfoLink faq="split" className="ml-2 align-middle text-cream" />
             </h3>
             <p className="mt-4 font-semibold leading-relaxed text-cream/80">
               Check out once for the whole crew and we hand you a branded repay
-              link with the cost per head already split — shipping included.
-              Friends square up straight from the link with Venmo, Zelle, or
+              link with the cost per head already split, shipping included.
+              Friends square up from the link with Venmo, Zelle, or
               PayPal, or they can pay on BigHead Builder and we refund your
               order automatically.
             </p>
@@ -151,12 +151,12 @@ export default function HowItWorks() {
                   @BIGRICK52 sent you a repay link
                 </p>
                 <p className="text-xs font-bold text-ink/50">
-                  bigheadbuilder.com/pay/BIGRICK52
+                  bigheadbuilder.com/pay/BIGRICK52/BH-4821
                 </p>
               </div>
             </div>
             <p className="mt-4 rounded-xl bg-cream-deep p-4 text-sm font-semibold leading-relaxed text-ink/80">
-              &ldquo;You owe me for 2 heads from race day — $48.00 covers both,
+              &ldquo;You owe me for 2 heads from race day, $48.00 covers both,
               shipping split.&rdquo;
             </p>
             <div className="mt-4 flex flex-wrap gap-2">
