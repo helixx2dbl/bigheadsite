@@ -4,34 +4,37 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import InfoLink from "./InfoLink";
+import { REFERRAL_PERCENT } from "@/lib/pricing";
 
+// One number drives both sides of this — REFERRAL_PERCENT, which mirrors the app's
+// AFFILIATE_CODE_PERCENTAMOUNT. The old copy promised a points balance and $25 Visa
+// gift cards; neither exists anywhere in the app, so both are gone.
 const ladder = [
   {
     n: "1",
-    title: "Every scan pays you back",
-    body: "Each head bought with your code takes a dollar off yours, until your order is completely free.",
+    title: "They scan, they save",
+    body: `Your code rides on the back of every head you order. Anyone who scans it takes ${REFERRAL_PERCENT}% off their own order, automatically at checkout.`,
   },
   {
     n: "2",
-    title: "Then you start stacking points",
-    body: "Every head keeps earning you points you can redeem for cool stuff, like $25 Visa gift cards.",
+    title: "You get the same back",
+    body: `Whatever they save, we refund to your card \u2014 ${REFERRAL_PERCENT}% of what they spend. Not a credit, not a coupon. Actual money, back where it came from.`,
   },
   {
     n: "3",
-    title: "Then... Profit??",
-    body: "Spend it on more heads. Spend it on a jet ski. Live más, baja blast at will. We're not your financial advisor.",
+    title: "Until yours is free",
+    body: "It keeps paying out until your own order is fully refunded. Get enough of the crew scanning and your head cost you nothing.",
   },
 ];
 
 const answers = [
-  "Scan my code and get one!",
-  "That's me. I'm the head guy.",
+  "All the cool kids are doing it!",
+  "That's me. I'm the head guy. The BIG head guy.",
   "One scan and this could be you.",
-  "Scan it, we could be twinsies.",
-  "My face literally pays for itself.",
-  "The QR code's on the stick, chief.",
+  "First we get the scans, then we get the khakis.",
+  "My face literally pays for itself.",  
   "Every scan gets me closer to a jet ski.",
-  "Do it for the group photo.",
+  "Do it for the chat.",
   "Scan now, thank me at the tailgate.",
   "This head is my side hustle.",
 ];
@@ -70,6 +73,8 @@ const useCases = [
   "WWE-style superfans",
   "Tailgates",
   "Kids hustling at the park",
+  "Retirement parties",
+  "Family reunions",
 ];
 
 const fadeUp = {

@@ -5,8 +5,10 @@ import { motion } from "framer-motion";
 import BuildButton from "./BuildButton";
 import InfoLink from "./InfoLink";
 import {
+  BUILD_DAYS,
   PRICE_FROM,
-  QUANTITY_TIERS,
+  PRICE_ROWS,
+  SHIPPING_BANNER,
   SIZE_INCHES,
 } from "@/lib/pricing";
 
@@ -25,12 +27,16 @@ export default function Intro() {
           <motion.p {...fadeUp} className="font-script text-3xl text-teal">
             made for superfans
           </motion.p>
-          <motion.h2
+          {/* The page's ONE h1. The hero's "Your face. / Way bigger." is the bigger type,
+              but it renders only after the loader clears — it sits behind client state, so
+              it never reaches the served html and a crawler would find no h1 at all. This
+              line is server-rendered and describes the product besides. */}
+          <motion.h1
             {...fadeUp}
             className="mt-4 text-4xl font-black leading-tight text-ink md:text-5xl"
           >
             Turn any photo into a giant head on a stick.
-          </motion.h2>
+          </motion.h1>
           <motion.p {...fadeUp} className="mt-6 text-lg font-semibold text-ink/70">
             Race day, graduation, bachelor party, little league: nothing says
             &ldquo;we came for you&rdquo; like your face, giant, on a stick.
@@ -60,12 +66,16 @@ export default function Intro() {
                 starting price
               </p>
             </div>
+            {/* was "2-3 days / with rush shipping" — that figure came from an
+                expedited option the app does not offer.
+                Only the figure goes on the big line: the full "1-2 business days" wrapped
+                to three lines here and dragged the row's height with it. */}
             <div>
               <p className="text-2xl font-black text-berry md:text-3xl">
-                2-3 days
+                {BUILD_DAYS}
               </p>
               <p className="mt-1 text-xs font-bold uppercase tracking-wide text-ink/55 md:text-sm">
-                with rush shipping
+                business days
               </p>
             </div>
           </motion.div>
@@ -102,22 +112,57 @@ export default function Intro() {
             )}
           </div>
 
-          {/* Quantity framing */}
+          {/* What it costs. Priced per DESIGN, matching the builder: the first
+              print of a face is full price and extra copies of that same face
+              are discounted. Not order-quantity tiers. */}
           <motion.div {...fadeUp} className="mt-8 space-y-2.5">
-            {QUANTITY_TIERS.map((tier) => (
+            {PRICE_ROWS.map((row) => (
               <div
-                key={tier.qty}
+                key={row.label}
                 className="flex items-baseline justify-between gap-4 border-b border-ink/10 pb-2.5 last:border-0"
               >
                 <span className="text-sm font-extrabold text-ink md:text-base">
-                  {tier.label}
+                  {row.label}
                 </span>
-                <span className="shrink-0 text-sm font-black text-berry md:text-base">
-                  ${tier.price}
-                  {tier.qty > 1 ? " ea" : ""}
+                <span className="flex shrink-0 items-baseline gap-2 text-sm font-black text-berry md:text-base">
+                  {row.price !== null && <span>${row.price}</span>}
+                  {row.note && (
+                    <span className="text-xs font-bold uppercase tracking-wide text-teal-deep md:text-sm">
+                      {row.note}
+                    </span>
+                  )}
                 </span>
               </div>
             ))}
+
+            {/* Free shipping gets its own band rather than a "Shipping — free" row: as a
+                line item it read like a $0 charge instead of the one thing on this page
+                that costs nothing. Teal against the cream table, so it reads as a perk. */}
+            <div className="!mt-4 flex items-center gap-3 rounded-xl border-2 border-teal/25 bg-teal/8 px-4 py-3">
+              <svg
+                viewBox="0 0 24 24"
+                aria-hidden
+                className="h-6 w-6 shrink-0 text-teal-deep"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M3 7h11v9H3z" />
+                <path d="M14 10h4l3 3v3h-7z" />
+                <circle cx="7" cy="18" r="1.6" />
+                <circle cx="17" cy="18" r="1.6" />
+              </svg>
+              <span>
+                <span className="block text-sm font-black text-teal-deep md:text-base">
+                  {SHIPPING_BANNER.headline}
+                </span>
+                <span className="block text-xs font-bold text-ink/55 md:text-sm">
+                  {SHIPPING_BANNER.detail}
+                </span>
+              </span>
+            </div>
           </motion.div>
 
           {/* Group split-pay: question hook then the highlighted pill, inline */}

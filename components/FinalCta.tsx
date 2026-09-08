@@ -85,9 +85,12 @@ export default function FinalCta() {
           >
             Build yours
           </a>
+          {/* Was a rush-printing + expedited-shipping promise. Neither exists in
+              the app — there is no service selector at any step — so it is gone
+              rather than softened. */}
           <p className="mx-auto mt-6 max-w-md text-sm font-bold leading-snug text-cream/75">
-            Need it fast? Rush printing + expedited shipping available. Arrive
-            before your event, or we rush a replacement / refund you.
+            Built to order in 1-2 business days, then 2-6 days to your door.
+            Shipping is free, anywhere in the US.
           </p>
         </div>
       </motion.div>

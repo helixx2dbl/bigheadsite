@@ -24,22 +24,23 @@ export default function ShippingPolicyPage() {
 
       <h2>Shipping time</h2>
       <p>
-        Once your head ships, transit typically takes <strong>2-5 days</strong>{" "}depending on
-        where you are. In a hurry? Rush printing and expedited shipping are available at checkout.
-        Heads can land in as little as 2-3 days.
+        Once your head ships, transit typically takes <strong>2-6 days</strong>{" "}depending on
+        where you are. We ship every order the same way, so there is no faster option to pick at
+        checkout — if you are working to a hard date, talk to us before you order.
       </p>
 
       <h2>Shipping costs</h2>
       <p>
-        Shipping is calculated at checkout based on your address and how many heads are in the box.
-        Ordering for a group? The whole crew ships together in one box, which keeps per-head shipping
-        down.
+        Shipping is <strong>free</strong> — on every order, to any address we ship to, with no
+        minimum to hit. The price you see on a head is the price you pay. Ordering for a group?
+        The whole crew still ships together in one box.
       </p>
 
-      <h2>Have an event date?</h2>
+      <h2>Working to an event date?</h2>
       <p>
-        Tell us your event date at checkout and we&rsquo;ll do everything we can to hit it. If we ever
-        miss a deadline you gave us, we&rsquo;ll rush a replacement or refund you. Just reach out.
+        There is no date field at checkout, so please{" "}
+        <a href="/contact/">get in touch</a> before you order and we will tell you honestly whether
+        your date is achievable. We would rather turn an order down than miss the day it was for.
       </p>
 
       <h2>Tracking your order</h2>

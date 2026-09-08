@@ -5,6 +5,7 @@ import Intro from "@/components/Intro";
 import HowItWorks from "@/components/HowItWorks";
 import Referral from "@/components/Referral";
 import Gallery from "@/components/Gallery";
+import NotAHead from "@/components/NotAHead";
 import Testimonials from "@/components/Testimonials";
 import FinalCta from "@/components/FinalCta";
 import Faq from "@/components/Faq";
@@ -18,6 +19,7 @@ export default function Home() {
       <Marquee />
       <Intro />
       <Gallery />
+      <NotAHead />
       <HowItWorks />
       <Referral />
       <Testimonials />

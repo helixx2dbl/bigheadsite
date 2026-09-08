@@ -89,15 +89,12 @@ export default function Hero() {
             transition={{ duration: 0.45 }}
             className="absolute inset-0 z-30 flex flex-col items-center justify-center bg-cream"
           >
-            <motion.div
-              animate={{ y: [0, -10, 0], rotate: [-4, 4, -4] }}
-              transition={{
-                repeat: Infinity,
-                duration: 1.15,
-                ease: "easeInOut",
-              }}
-              style={{ transformOrigin: "bottom center" }}
-            >
+            {/* The bounce is the builder app's loader animation (see
+                .animate-bighead-bounce in globals.css) rather than the flat up-down this
+                used to do — squash on the ground, round at the apex, with a shadow that
+                reacts. Plain CSS, not motion: the keyframe stops are copied from the app
+                verbatim and this keeps them that way. */}
+            <div className="flex flex-col items-center">
               <Image
                 src="/brand/logo-sticker.svg"
                 alt="BigHead Builder"
@@ -105,9 +102,13 @@ export default function Hero() {
                 height={312}
                 unoptimized
                 priority
-                className="h-auto w-44 drop-shadow-lg md:w-56"
+                className="animate-bighead-bounce h-auto w-44 drop-shadow-lg md:w-56"
               />
-            </motion.div>
+              <div
+                aria-hidden
+                className="animate-bighead-bounce-shadow -mt-1 h-2.5 w-24 rounded-[50%] bg-teal-deep blur-[2px] md:h-3 md:w-32"
+              />
+            </div>
             <p className="mt-6 text-sm font-extrabold uppercase tracking-[0.25em] text-ink/50">
               Getting big…
             </p>
@@ -138,10 +139,14 @@ export default function Hero() {
         <div className="absolute inset-0 bg-ink/20" />
       </motion.div>
 
-      {/* Headline + CTA once ready */}
+      {/* Headline + CTA once ready.
+          These two lines are DIVS, not headings. They were h1s, but the block only mounts
+          once `ready` is true, so they never appeared in the served html — the page shipped
+          with no h1 at all. The real h1 now lives on the Intro headline, which is
+          server-rendered. This is display type, not document structure. */}
       {ready && (
         <div className="absolute inset-0 z-20 flex select-none flex-col items-center justify-center pt-16 md:pt-20">
-          <motion.h1
+          <motion.div
             initial={{ opacity: 0, scale: 3.6 }}
             animate={{ opacity: 1, scale: [3.6, 0.85, 1.12, 0.97, 1] }}
             transition={{
@@ -155,14 +160,14 @@ export default function Hero() {
             className="relative font-black uppercase leading-none tracking-tight text-ink drop-shadow-[0_4px_18px_rgba(38,52,58,0.35)] text-[12vw] md:text-[9vw]"
           >
             Your face.
-          </motion.h1>
+          </motion.div>
 
           <div className="h-[28vh] md:h-[32vh]" aria-hidden />
 
-          <h1 className="relative flex gap-[0.22em] font-black uppercase leading-none tracking-tight text-berry drop-shadow-[0_4px_18px_rgba(38,52,58,0.35)] text-[12vw] md:text-[9vw]">
+          <div className="relative flex gap-[0.22em] font-black uppercase leading-none tracking-tight text-berry drop-shadow-[0_4px_18px_rgba(38,52,58,0.35)] text-[12vw] md:text-[9vw]">
             <StampWord word="Way" start={wayStart} step={wayStep} />
             <StampWord word="bigger." start={biggerStart} step={biggerStep} />
-          </h1>
+          </div>
 
           <motion.div
             initial={{ opacity: 0, y: 18 }}

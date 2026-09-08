@@ -2,11 +2,10 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { BUILD_HREF } from "@/lib/pricing";
+import { BUILD_HREF, FIND_ORDER_HREF } from "@/lib/pricing";
 
 export default function Nav() {
   const [solid, setSolid] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
     // Switch to solid/ink nav once we've scrolled past the hero
@@ -51,29 +50,17 @@ export default function Nav() {
           >
             FAQ
           </a>
-          {loggedIn ? (
-            <button
-              type="button"
-              onClick={() => setLoggedIn(false)}
-              title="Log out"
-              aria-label="Account, click to log out"
-              className="flex h-9 w-9 items-center justify-center overflow-hidden rounded-full border-2 border-berry bg-teal-deep shadow-md transition-transform hover:scale-105"
-            >
-              <span className="text-xs font-black tracking-tight text-cream">
-                BR
-              </span>
-            </button>
-          ) : (
-            <button
-              type="button"
-              onClick={() => setLoggedIn(true)}
-              className={`text-sm font-extrabold transition-colors duration-500 hover:underline ${
-                solid ? "text-ink" : "text-cream drop-shadow"
-              }`}
-            >
-              LOGIN
-            </button>
-          )}
+          {/* Was a mock LOGIN that toggled to a hardcoded "BR" avatar. There is no
+              customer login anywhere in the product, so it promised an account that
+              didn't exist; anyone clicking it wants their order, not a new one. */}
+          <a
+            href={FIND_ORDER_HREF}
+            className={`whitespace-nowrap text-sm font-extrabold transition-colors duration-500 hover:underline ${
+              solid ? "text-ink" : "text-cream drop-shadow"
+            }`}
+          >
+            FIND MY ORDER
+          </a>
           <a
             href={BUILD_HREF}
             className="whitespace-nowrap rounded-full bg-berry px-4 py-2.5 text-sm font-extrabold text-cream shadow-md transition-transform hover:scale-105 hover:bg-berry-deep sm:px-5"

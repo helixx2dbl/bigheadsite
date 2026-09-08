@@ -58,6 +58,149 @@ body {
   animation: marquee 30s linear infinite;
 }
 
+/* Squash-and-stretch bounce, ported from the builder app's loader
+   (Resources.SVG_ANIMATED_LOADER_COLOR) so both ends of the funnel move the same way.
+   Keyframe stops, easing and the 1150ms period are copied from it verbatim.
+
+   The app's version lifts a fixed -62px inside a fixed 760-unit viewBox. Here the logo is
+   sized responsively (w-44 / md:w-56), so the translations are percentages instead —
+   translateY(%) resolves against the element's own height, which keeps the bounce
+   proportional at any size. -62/584 of the artwork height is the 10.6% below.
+
+   The squash is the point: it is widest and shortest at the two ground contacts (0% and
+   84%) and perfectly round at the apex, with transform-origin at the bottom so it deforms
+   against the floor rather than about its middle. */
+@keyframes bighead-bounce {
+  0% {
+    transform: translateY(0) scale(1.05, 0.94) rotate(0deg);
+  }
+  20% {
+    transform: translateY(-1.7%) scale(0.97, 1.05) rotate(1deg);
+  }
+  45% {
+    transform: translateY(-10.6%) scale(1, 1) rotate(-4deg);
+  }
+  70% {
+    transform: translateY(-1.7%) scale(0.98, 1.03) rotate(-1deg);
+  }
+  84% {
+    transform: translateY(0) scale(1.1, 0.88) rotate(0deg);
+  }
+  100% {
+    transform: translateY(0) scale(1.05, 0.94) rotate(0deg);
+  }
+}
+
+/* The shadow sells the height: it shrinks and fades as the logo rises, and spreads and
+   darkens on impact. Same period so the two stay locked together. */
+@keyframes bighead-bounce-shadow {
+  0% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  45% {
+    transform: scale(0.55);
+    opacity: 0.12;
+  }
+  84% {
+    transform: scale(1.05);
+    opacity: 0.32;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+}
+
+.animate-bighead-bounce {
+  transform-origin: bottom center;
+  animation: bighead-bounce 1150ms ease-in-out infinite;
+}
+
+.animate-bighead-bounce-shadow {
+  animation: bighead-bounce-shadow 1150ms ease-in-out infinite;
+}
+
+/* Anyone who has asked not to be moved gets the logo sitting still rather than a
+   1150ms loop running until the photo loads. */
+@media (prefers-reduced-motion: reduce) {
+  .animate-bighead-bounce,
+  .animate-bighead-bounce-shadow {
+    animation: none;
+  }
+}
+
+/* The "Not really!" row: each cutout waves on its stick. Pivot is the bottom of the
+   stick, not the middle of the card, so it reads as someone holding it up and swaying
+   rather than a picture spinning. Kept small — a few degrees is a wave, ten is a seizure.
+   Each item offsets its own delay/duration inline so the row never marches in unison. */
+@keyframes bighead-sway {
+  0% {
+    transform: rotate(-3deg) translateY(0);
+  }
+  50% {
+    transform: rotate(3deg) translateY(-6px);
+  }
+  100% {
+    transform: rotate(-3deg) translateY(0);
+  }
+}
+
+.animate-bighead-sway {
+  transform-origin: bottom center;
+  animation: bighead-sway 2600ms ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-bighead-sway {
+    animation: none;
+  }
+}
+
+/* Outlined display type — used for "NOT REALLY!".
+   Done as a KNOCK-OUT, not as -webkit-text-stroke over a transparent fill.
+   That simpler approach does not work on Nunito: the stroke is drawn CENTRED on the glyph
+   outline, so half of it grows inward, and on a face this heavy the inward halves from
+   either side of a stem meet in the middle and fill it back in. The result is a tube — the
+   N's diagonal and the A's crossbar come out as extra lines rather than an outline.
+   So instead: a fat stroked copy sits BEHIND (::before via data-text), and the element's
+   own text is painted in the background colour on top, covering the glyph body and the
+   inward half of the stroke. What survives is the outer half — a clean ring of half the
+   stroke width, plus the same ring inside each counter, which is what an outline should do.
+   This depends on knowing the colour behind the type, hence --ring-knockout: it must match
+   the section's background or the letters fill with the wrong colour. */
+.text-ring {
+  position: relative;
+  /* new stacking context so the ::before's z-index:-1 sits behind this text but still
+     above the section background, rather than disappearing behind the section */
+  isolation: isolate;
+  color: var(--ring-knockout, var(--teal));
+}
+
+.text-ring::before {
+  content: attr(data-text);
+  /* inset:0 rather than left/top:0 — the copy has to occupy the SAME BOX as the real text,
+     not just share its origin. This heading is centred, and a shrink-to-fit pseudo-element
+     pinned at the left edge put the two copies out of register, so the outline landed
+     beside the word instead of around it. Filling the box lets the inherited text-align
+     centre both identically. */
+  position: absolute;
+  inset: 0;
+  text-align: inherit;
+  z-index: -1;
+  color: var(--cream);
+  -webkit-text-stroke: 6px var(--cream);
+  paint-order: stroke fill;
+  /* purely decorative: it is the same word again, so keep it from being read out twice */
+  pointer-events: none;
+}
+
+@media (min-width: 768px) {
+  .text-ring::before {
+    -webkit-text-stroke-width: 9px;
+  }
+}
+
 /* Readable body styling for the policy / legal pages. Authored so those pages
    can be written as plain semantic HTML (h2, h3, p, ul, a). */
 .prose-policy h2 {

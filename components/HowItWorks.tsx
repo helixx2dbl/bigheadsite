@@ -38,7 +38,7 @@ const steps = [
   {
     n: "04",
     title: "It ships to you",
-    body: "We package and ship your head in 1-2 business days. Shipping takes 2-5 days. Order one or a whole crowd.",
+    body: "We package and ship your head in 1-2 business days. Shipping takes 2-6 days. Order one or a whole crowd.",
     accent: "bg-teal",
     icon: "/icons/shipping.svg",
     faq: "shipping",

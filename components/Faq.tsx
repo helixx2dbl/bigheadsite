@@ -12,7 +12,7 @@ export const faqs = [
   {
     id: "price",
     q: "How much do they cost?",
-    a: "Heads start at $24 each. Order five or more and they drop to $21 each; twenty or more and you're at $18 each. Shipping is calculated at checkout. Rush print + expedited shipping is available if you need it sooner.",
+    a: "$25 for the first print of a design, and $17.50 for every extra copy of that same design \u2014 30% off. So one face printed three times is $25 + $17.50 + $17.50. Three different faces is $25 each, because each one is a new design to cut. Shipping is free, always \u2014 no minimum, no thresholds.",
   },
   {
     id: "photo",
@@ -22,7 +22,7 @@ export const faqs = [
   {
     id: "shipping",
     q: "How long does shipping take?",
-    a: "Standard is 1-2 business days to package plus 2-5 days of shipping. Need it faster? Pick rush printing and expedited shipping at checkout. Heads can land in as soon as 2-3 days. Tell us your event date and we'll aim for it; if we miss your window, we rush a replacement or refund you.",
+    a: "Every head is cut and assembled to order, which takes 1-2 business days, then 2-5 days in transit. Shipping is free anywhere in the US, on every order. Got a hard date coming up? Get in touch before you order and we'll tell you honestly whether we can make it.",
   },
   {
     id: "durability",
@@ -32,12 +32,12 @@ export const faqs = [
   {
     id: "referral",
     q: "How does the referral program work?",
-    a: "Every head ships with QR code stickers tied to your referral handle. Each head bought with your code refunds $1 off your order until yours is completely free. After that you earn 100 points per head, and every 2,500 points redeems for a $25 Visa gift card.",
+    a: "Every head ships with a QR code on the back carrying a discount code that's yours. Anyone who scans it gets 10% off their order, and we refund that same amount \u2014 10% of what they spend \u2014 straight back to your card. It keeps paying out until your own order is fully refunded, so a few scans at one tailgate can cover the whole thing.",
   },
   {
     id: "group",
     q: "Can I order a bunch for a group?",
-    a: "Absolutely. One order can include as many heads as you want, and per-head pricing drops when you order five or more. The whole crew ships together in one box.",
+    a: "Absolutely \u2014 one order can hold up to nine different faces, and as many copies of each as you like. The saving is on copies rather than order size: extra prints of the same face are $17.50 instead of $25. The whole crew ships together in one box.",
   },
   {
     id: "split",

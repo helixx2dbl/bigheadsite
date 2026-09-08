@@ -12,7 +12,7 @@ const testimonials = [
     tag: "@FINISHLINE_PHIL",
     event: "Ironman",
     heads: 3,
-    points: 2150,
+    refunded: 26,
   },
   {
     src: "/photos/IMG_4690.jpg",
@@ -21,7 +21,7 @@ const testimonials = [
     tag: "@BIGRICK52",
     event: "Birthday",
     heads: 1,
-    points: 480,
+    refunded: 4,
   },
   {
     src: "/photos/IMG_0106.jpg",
@@ -29,7 +29,7 @@ const testimonials = [
     tag: "@LAKE_DAY_LARRY",
     event: "Bachelor party",
     heads: 2,
-    points: 1020,
+    refunded: 11,
   },
   {
     src: "/photos/IMG_4716.jpg",
@@ -38,12 +38,14 @@ const testimonials = [
     tag: "@QUESO_QUEEN",
     event: "Tailgate",
     heads: 5,
-    points: 4730,
+    refunded: 58,
   },
 ];
 
-function formatPts(n: number) {
-  return n.toLocaleString("en-US");
+// The metric used to be a points balance. There is no points system in the app —
+// the referral program pays a percentage back to the card — so these show money.
+function formatBack(n: number) {
+  return "$" + n.toLocaleString("en-US");
 }
 
 function MetaItem({
@@ -145,7 +147,7 @@ export default function Testimonials() {
                     {`${t.heads} ${t.heads === 1 ? "head" : "heads"} ordered`}
                   </MetaItem>
                   <MetaItem icon="star">
-                    {`${formatPts(t.points)} pts earned`}
+                    {`${formatBack(t.refunded)} back`}
                   </MetaItem>
                 </div>
               </div>
