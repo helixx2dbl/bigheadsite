@@ -7,7 +7,7 @@ export const faqs = [
   {
     id: "size",
     q: "How big are the heads?",
-    a: "Big. Each BigHead is about 24 inches tall, roughly three times life size, printed on rigid, lightweight board and mounted on a sturdy stick. Easy to wave for a whole game, impossible to miss from the bleachers.",
+    a: "Big. Each BigHead is about 24 inches tall, roughly three times life size, printed on rigid, lightweight board. It arrives flat with a sturdy stick and a strip of industrial-strength 3M double-sided tape \u2014 you press the stick on yourself, which takes about ten seconds. Easy to wave for a whole game, impossible to miss from the bleachers.",
   },
   {
     id: "price",
@@ -23,6 +23,11 @@ export const faqs = [
     id: "shipping",
     q: "How long does shipping take?",
     a: "Every head is cut and assembled to order, which takes 1-2 business days, then 2-5 days in transit. Shipping is free anywhere in the US, on every order. Got a hard date coming up? Get in touch before you order and we'll tell you honestly whether we can make it.",
+  },
+  {
+    id: "assembly",
+    q: "Do I have to put it together?",
+    a: "Only the stick, and only once. Your BigHead ships flat with the stick alongside it and a strip of industrial-strength 3M double-sided tape already cut to size. Peel, press the stick to the back, done \u2014 about ten seconds, no tools. We ship it flat on purpose: a pre-attached stick means a much bigger box and a head that arrives creased at the corners.",
   },
   {
     id: "durability",

@@ -28,7 +28,7 @@ const steps = [
   {
     n: "03",
     title: "We build it",
-    body: "Every BigHead is about 24\" tall, printed on premium corrugated stock with a sturdy stick that survives the wildest cheering.",
+    body: "Every BigHead is about 24\" tall, printed on premium corrugated stock that survives the wildest cheering.",
     accent: "bg-berry",
     icon: "/icons/printing.svg",
     faq: "size",
@@ -38,7 +38,7 @@ const steps = [
   {
     n: "04",
     title: "It ships to you",
-    body: "We package and ship your head in 1-2 business days. Shipping takes 2-6 days. Order one or a whole crowd.",
+    body: "Ships flat in 1-2 business days with the stick and a strip of industrial-strength 3M tape. Press it on and you\u2019re done \u2014 flat-packing is what keeps it from arriving bent.",
     accent: "bg-teal",
     icon: "/icons/shipping.svg",
     faq: "shipping",

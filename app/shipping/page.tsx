@@ -11,8 +11,9 @@ export default function ShippingPolicyPage() {
   return (
     <PolicyPage kicker="getting it to you" title="Shipping Policy" updated="August 2026">
       <p>
-        Every BigHead is printed and hand-assembled to order, so here&rsquo;s exactly what to expect
-        between hitting &ldquo;order&rdquo; and waving your head in the stands.
+        Every BigHead is printed and cut to order, so here&rsquo;s exactly what to expect
+        between hitting &ldquo;order&rdquo; and waving your head in the stands &mdash; including
+        the one small bit of assembly at your end.
       </p>
 
       <h2>Build &amp; processing time</h2>
@@ -20,6 +21,18 @@ export default function ShippingPolicyPage() {
         Because each head is custom-made from your photo, we need a little time to print, cut, and
         assemble it. Most orders are built in <strong>1-2 business days</strong>. Orders placed over the
         weekend or on holidays start processing the next business day.
+      </p>
+
+      <h2>What arrives, and the one thing you do</h2>
+      <p>
+        Your BigHead ships <strong>flat</strong>, with the stick lying alongside it and a strip of
+        industrial-strength 3M double-sided tape already cut to size. Peel it, press the stick to
+        the back of the head, and you are done &mdash; about ten seconds, no tools, nothing to buy.
+      </p>
+      <p>
+        We do it this way on purpose. A head with the stick already attached needs a far bigger
+        box and arrives creased at the corners more often than not. Flat-packing is what lets a
+        24&Prime; board turn up in one piece, and it is why a whole group can travel in a single box.
       </p>
 
       <h2>Shipping time</h2>
