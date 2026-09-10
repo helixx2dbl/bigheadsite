@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
 import PolicyPage from "@/components/legal/PolicyPage";
+// A policy page states the rate, so it reads it from the same constants the pricing block
+// and the FAQ do rather than restating it — this page still said "free" for a while after
+// checkout started charging.
+import { PRICE_SHIPPING_PER_BOX, SHIPPING_HEADS_PER_BOX } from "@/lib/pricing";
 
 export const metadata: Metadata = {
   title: "Shipping Policy | BigHead Builder",
@@ -9,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function ShippingPolicyPage() {
   return (
-    <PolicyPage kicker="getting it to you" title="Shipping Policy" updated="August 2026">
+    <PolicyPage kicker="getting it to you" title="Shipping Policy" updated="September 2026">
       <p>
         Every BigHead is printed and cut to order, so here&rsquo;s exactly what to expect
         between hitting &ldquo;order&rdquo; and waving your head in the stands &mdash; including
@@ -32,7 +36,8 @@ export default function ShippingPolicyPage() {
       <p>
         We do it this way on purpose. A head with the stick already attached needs a far bigger
         box and arrives creased at the corners more often than not. Flat-packing is what lets a
-        24&Prime; board turn up in one piece, and it is why a whole group can travel in a single box.
+        24&Prime; board turn up in one piece, and it is why up to {SHIPPING_HEADS_PER_BOX} heads can
+        travel in a single box.
       </p>
 
       <h2>Shipping time</h2>
@@ -44,9 +49,12 @@ export default function ShippingPolicyPage() {
 
       <h2>Shipping costs</h2>
       <p>
-        Shipping is <strong>free</strong> — on every order, to any address we ship to, with no
-        minimum to hit. The price you see on a head is the price you pay. Ordering for a group?
-        The whole crew still ships together in one box.
+        Shipping is a flat <strong>${PRICE_SHIPPING_PER_BOX} per box</strong>, to any address we
+        ship to, with no minimum to hit. One box holds up to {SHIPPING_HEADS_PER_BOX} heads, so a
+        single head and a crew of {SHIPPING_HEADS_PER_BOX} cost exactly the same to ship. An order
+        too big for one box travels in as many as it needs, at ${PRICE_SHIPPING_PER_BOX} each, and
+        the builder shows you the boxes filling up as you choose quantities so there is never a
+        surprise at checkout.
       </p>
 
       <h2>Working to an event date?</h2>

@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import {
   BUILD_HREF,
   PRICE_FROM,
+  PRICE_SHIPPING_PER_BOX,
+  SHIPPING_HEADS_PER_BOX,
   SHIP_DAYS_LABEL,
   SIZE_INCHES,
 } from "@/lib/pricing";
@@ -90,7 +92,8 @@ export default function FinalCta() {
               rather than softened. */}
           <p className="mx-auto mt-6 max-w-md text-sm font-bold leading-snug text-cream/75">
             Built to order in 1-2 business days, then 2-6 days to your door.
-            Shipping is free, anywhere in the US.
+            Shipping is a flat ${PRICE_SHIPPING_PER_BOX} per box of up to{" "}
+            {SHIPPING_HEADS_PER_BOX} heads, anywhere in the US.
           </p>
         </div>
       </motion.div>

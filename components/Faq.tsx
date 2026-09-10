@@ -2,6 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+// Shipping figures come from the pricing module rather than being typed in here — this file
+// promised free shipping in two answers after the app started charging, and a third hardcoded
+// copy is how that happens again. (The $25 / $17.50 in the price answer below are still
+// literals and should follow.)
+import { PRICE_SHIPPING_PER_BOX, SHIPPING_HEADS_PER_BOX } from "@/lib/pricing";
 
 export const faqs = [
   {
@@ -12,7 +17,7 @@ export const faqs = [
   {
     id: "price",
     q: "How much do they cost?",
-    a: "$25 for the first print of a design, and $17.50 for every extra copy of that same design \u2014 30% off. So one face printed three times is $25 + $17.50 + $17.50. Three different faces is $25 each, because each one is a new design to cut. Shipping is free, always \u2014 no minimum, no thresholds.",
+    a: `$25 for the first print of a design, and $17.50 for every extra copy of that same design \u2014 30% off. So one face printed three times is $25 + $17.50 + $17.50. Three different faces is $25 each, because each one is a new design to cut. Shipping is a flat $${PRICE_SHIPPING_PER_BOX} per box, and up to ${SHIPPING_HEADS_PER_BOX} heads fit in a box.`,
   },
   {
     id: "photo",
@@ -22,7 +27,7 @@ export const faqs = [
   {
     id: "shipping",
     q: "How long does shipping take?",
-    a: "Every head is cut and assembled to order, which takes 1-2 business days, then 2-5 days in transit. Shipping is free anywhere in the US, on every order. Got a hard date coming up? Get in touch before you order and we'll tell you honestly whether we can make it.",
+    a: `Every head is cut and assembled to order, which takes 1-2 business days, then 2-5 days in transit. Shipping anywhere in the US is a flat $${PRICE_SHIPPING_PER_BOX} per box, and one box holds up to ${SHIPPING_HEADS_PER_BOX} heads \u2014 so ordering for the whole crew costs no more to ship than ordering one. Got a hard date coming up? Get in touch before you order and we'll tell you honestly whether we can make it.`,
   },
   {
     id: "assembly",

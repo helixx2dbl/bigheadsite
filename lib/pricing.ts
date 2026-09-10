@@ -33,16 +33,25 @@ export const DUPLICATE_SAVE_PERCENT = Math.round(
   (1 - PRICE_DUPLICATE_CENTS / PRICE_FIRST_CENTS) * 100
 );
 
-// Shipping is FREE as of 2026-09-08 — a deliberate call while volume is low, to be
-// revisited once it isn't.
+// Shipping is a FLAT RATE PER BOX as of 2026-09-10. It was free from 2026-09-08 until
+// then, and a $3-per-head placeholder before that.
 //
-// This mirrors the app: BuildPanel_Address.js builds the shipping line as
-// SHIPPING_PRODUCT_PRICEPERKIT * total heads, and that constant is now 0. The two must
-// move together. They were out of step once already — the constant was 300 while this
-// page advertised free shipping — because SHIPPING_PRODUCT_CUSTOM is *declared* with
-// price 0 and the address step overwrites it before the line reaches the cart. Reading
-// the declaration alone is not enough; read the address step.
-export const PRICE_SHIPPING_FREE = true;
+// Mirrors the app: CONFIG.SHIPPING_PRICE_PER_BOX and CONFIG.SHIPPING_HEADS_PER_BOX in
+// bigheadbuilder/app/app/Config.js. The number of boxes is
+// ceil(heads / SHIPPING_HEADS_PER_BOX) — BuildPanel_SubPanel.getBoxCountForHeads — and the
+// server packs and cuts one LABEL per box off the same figure (BIGHEAD_HEADS_PER_BOX in
+// entry.php), so all three have to move together.
+//
+// Per box rather than per head because that is how the cost behaves: an 18x24 rigid board
+// fixes the carton footprint and only the depth varies, so a box of eight posts for barely
+// more than a box of one.
+//
+// READ THE ADDRESS STEP, not just the declaration. SHIPPING_PRODUCT_CUSTOM is *declared*
+// with price 0 and BuildPanel_Address overwrites it before the line reaches the cart. That
+// is exactly how this page came to advertise free shipping while the app charged $3 a head.
+const SHIPPING_PER_BOX_CENTS = 500;
+export const SHIPPING_HEADS_PER_BOX = 8;
+export const PRICE_SHIPPING_PER_BOX = usd(SHIPPING_PER_BOX_CENTS);
 
 // Rows for the pricing block in Intro. Deliberately phrased around designs and
 // copies, since that is the axis the app actually prices on.
@@ -62,12 +71,16 @@ export const PRICE_ROWS: readonly PriceRow[] = [
   },
 ];
 
-// Deliberately NOT a third row. As a line item reading "Shipping — free" it looked like a
-// $0 charge; it is the one genuinely free thing on the page, so it gets its own banner
-// under the table instead.
+// Deliberately NOT a third row. A line item reading "Shipping — $5" invites the reader to
+// add it to the two prices above and treat it as per-head, which is the one thing it is
+// not. The band says the per-BOX rule in a sentence instead.
+//
+// It is no longer free, but per box it is still the friendly number, and the thing worth
+// leading with is the room in the box rather than the price — the same argument the
+// builder's box meter makes on the options step.
 export const SHIPPING_BANNER = {
-  headline: "Free shipping. Every order.",
-  detail: "No minimum, no thresholds, anywhere in the US.",
+  headline: `Flat $${PRICE_SHIPPING_PER_BOX} shipping per box.`,
+  detail: `Up to ${SHIPPING_HEADS_PER_BOX} heads fit in one box — the ${SHIPPING_HEADS_PER_BOX}th ships for the same $${PRICE_SHIPPING_PER_BOX} as the 1st.`,
 };
 
 // Optional add-on: if the automatic cutout doesn't nail a photo, the customer
@@ -101,9 +114,11 @@ export const BUILD_DAYS_LABEL = "1-2 business days";
 export const SHIP_DAYS_LABEL = "Ships in 1-2 business days";
 export const TRANSIT_DAYS_LABEL = "2-5 days";
 
-// There is no rush or expedited option in the app: no service selector at any
-// step, and the products carry one hardcoded fedex_2day config. Do not put a
-// faster promise on the site until one exists.
+// There is no rush or expedited option in the app: no service selector at any step, and
+// carrier/service are env-driven and default to UNSET so ShipStation's own rules assign
+// them. (The old reason given here — "the products carry one hardcoded fedex_2day config" —
+// is gone: that shipping_config was removed from the product blocks on 2026-09-10 because
+// nothing read it.) Do not put a faster promise on the site until one exists.
 export const RUSH_AVAILABLE = false;
 
 // The builder is a separate deploy from this marketing site, so every CTA is a

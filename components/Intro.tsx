@@ -135,9 +135,10 @@ export default function Intro() {
               </div>
             ))}
 
-            {/* Free shipping gets its own band rather than a "Shipping — free" row: as a
-                line item it read like a $0 charge instead of the one thing on this page
-                that costs nothing. Teal against the cream table, so it reads as a perk. */}
+            {/* Shipping gets its own band rather than a third table row. Sat under the two
+                per-design prices it would be read as a third per-head charge, which is the
+                one thing it is not — it is per BOX. Teal against the cream table, so the
+                "same $5 for eight as for one" still lands as a perk. */}
             <div className="!mt-4 flex items-center gap-3 rounded-xl border-2 border-teal/25 bg-teal/8 px-4 py-3">
               <svg
                 viewBox="0 0 24 24"
