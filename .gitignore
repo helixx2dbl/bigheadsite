@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Local backup of the pre-resize photo originals (13MB). Not tracked: the originals are
+# already in git history as of bce7f5f, so any of them can be recovered with
+#   git show bce7f5f:public/photos/<name> > <name>
+# Committing a second copy would just double the repo's image weight.
+photosbackup/

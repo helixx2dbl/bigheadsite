@@ -1,65 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-// Shipping figures come from the pricing module rather than being typed in here — this file
-// promised free shipping in two answers after the app started charging, and a third hardcoded
-// copy is how that happens again. (The $25 / $17.50 in the price answer below are still
-// literals and should follow.)
-import { PRICE_SHIPPING_PER_BOX, SHIPPING_HEADS_PER_BOX } from "@/lib/pricing";
-
-export const faqs = [
-  {
-    id: "size",
-    q: "How big are the heads?",
-    a: "Big. Each BigHead is about 24 inches tall, roughly three times life size, printed on rigid, lightweight board. It arrives flat with a sturdy stick and a strip of industrial-strength 3M double-sided tape \u2014 you press the stick on yourself, which takes about ten seconds. Easy to wave for a whole game, impossible to miss from the bleachers.",
-  },
-  {
-    id: "price",
-    q: "How much do they cost?",
-    a: `$25 for the first print of a design, and $17.50 for every extra copy of that same design \u2014 30% off. So one face printed three times is $25 + $17.50 + $17.50. Three different faces is $25 each, because each one is a new design to cut. Shipping is a flat $${PRICE_SHIPPING_PER_BOX} per box, and up to ${SHIPPING_HEADS_PER_BOX} heads fit in a box.`,
-  },
-  {
-    id: "photo",
-    q: "What kind of photo do I need?",
-    a: "A front-facing shot in decent light where the head isn't blocked or blurry. Almost any modern phone photo works great. Our builder shows you a live preview of the cut-out before you pay, so you'll know it looks good before we print it.",
-  },
-  {
-    id: "shipping",
-    q: "How long does shipping take?",
-    a: `Every head is cut and assembled to order, which takes 1-2 business days, then 2-5 days in transit. Shipping anywhere in the US is a flat $${PRICE_SHIPPING_PER_BOX} per box, and one box holds up to ${SHIPPING_HEADS_PER_BOX} heads \u2014 so ordering for the whole crew costs no more to ship than ordering one. Got a hard date coming up? Get in touch before you order and we'll tell you honestly whether we can make it.`,
-  },
-  {
-    id: "assembly",
-    q: "Do I have to put it together?",
-    a: "Only the stick, and only once. Your BigHead ships flat with the stick alongside it and a strip of industrial-strength 3M double-sided tape already cut to size. Peel, press the stick to the back, done \u2014 about ten seconds, no tools. We ship it flat on purpose: a pre-attached stick means a much bigger box and a head that arrives creased at the corners.",
-  },
-  {
-    id: "durability",
-    q: "Will it survive rain and rowdy crowds?",
-    a: "BigHeads have a weather-resistant coating that shrugs off drizzle, spilled drinks, and confetti. They're built for full seasons of tailgates. Just don't use one as a paddle.",
-  },
-  {
-    id: "referral",
-    q: "How does the referral program work?",
-    a: "Every head ships with a QR code on the back carrying a discount code that's yours. Anyone who scans it gets 10% off their order, and we refund that same amount \u2014 10% of what they spend \u2014 straight back to your card. It keeps paying out until your own order is fully refunded, so a few scans at one tailgate can cover the whole thing.",
-  },
-  {
-    id: "group",
-    q: "Can I order a bunch for a group?",
-    a: "Absolutely \u2014 one order can hold up to nine different faces, and as many copies of each as you like. The saving is on copies rather than order size: extra prints of the same face are $17.50 instead of $25. The whole crew ships together in one box.",
-  },
-  {
-    id: "split",
-    q: "I fronted the group order. How do I get paid back?",
-    a: "After checkout we generate a branded repay link that splits your total per head, shipping included. Send it to the crew: they can pay you back instantly with Venmo, Zelle, or PayPal, or pay through BigHead Builder and we refund that share of your order automatically. The link also carries your order info, so anyone who wants their own head can buy through it, and that purchase refunds you too.",
-  },
-  {
-    id: "pets",
-    q: "Does it have to be a human head?",
-    a: "Nope. Dogs, cats, babies, grandma, your fantasy league commissioner. If it has a face, we can put it on a stick.",
-  },
-];
+import { motion } from "framer-motion";
+// Content lives in lib/faqs.ts so the JSON-LD builder (a server module) can read it too.
+import { faqs } from "@/lib/faqs";
 
 export default function Faq() {
   const [open, setOpen] = useState<number | null>(null);
@@ -123,6 +67,8 @@ export default function Faq() {
                 <button
                   onClick={() => setOpen(isOpen ? null : i)}
                   aria-expanded={isOpen}
+                  aria-controls={`faq-panel-${item.id}`}
+                  id={`faq-button-${item.id}`}
                   className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
                 >
                   <span className="text-lg font-extrabold text-ink">
@@ -137,21 +83,43 @@ export default function Faq() {
                     +
                   </motion.span>
                 </button>
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.25, ease: "easeInOut" }}
-                      className="overflow-hidden"
-                    >
-                      <p className="px-6 pb-6 font-semibold leading-relaxed text-ink/70">
-                        {item.a}
-                      </p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                {/* ALWAYS RENDERED, collapsed with CSS rather than unmounted.
+                    This used to be {isOpen && ...} inside AnimatePresence, which kept the
+                    answer out of the DOM entirely until someone clicked — so the built HTML
+                    carried all nine QUESTIONS and none of the nine ANSWERS. That is ~1,200
+                    words of the most search-valuable copy on the site, invisible to crawlers
+                    (a rendering crawler cannot see it either: it is gated on a click, not on
+                    hydration), and it made valid FAQPage structured data impossible, since
+                    the markup has to contain the answer text the schema claims.
+                    Collapsed-but-present is the standard accordion pattern and is indexed.
+                    aria-hidden keeps screen readers from reading out all ten at once.
+
+                    Animated with max-height rather than framer-motion, for one reason only:
+                    a plain CSS transition can be verified headlessly and a JS-driven one
+                    cannot. The motion version was almost certainly fine — it was measured
+                    under Chrome's --virtual-time-budget, which fast-forwards setTimeout but
+                    does NOT advance the animation clock, so every animated property reads as
+                    stuck at its start value. Two rewrites were made chasing that phantom
+                    before the cause was spotted. If you are ever testing an animation in
+                    headless Chrome, disable the transition and assert the END STATE; do not
+                    trust a mid-flight measurement under virtual time.
+                    max-h-96 (384px) is not a guess: the tallest answer measures 232px at a
+                    360px viewport and 154px at 900px, so there is ~65% headroom. An answer
+                    that outgrew it would CLIP rather than scroll, so re-measure if these get
+                    much longer. */}
+                <div
+                  id={`faq-panel-${item.id}`}
+                  role="region"
+                  aria-labelledby={`faq-button-${item.id}`}
+                  aria-hidden={!isOpen}
+                  className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                    isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+                  }`}
+                >
+                  <p className="px-6 pb-6 font-semibold leading-relaxed text-ink/70">
+                    {item.a}
+                  </p>
+                </div>
               </div>
             );
           })}

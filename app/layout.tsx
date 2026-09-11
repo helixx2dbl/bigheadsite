@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Nunito, Pacifico } from "next/font/google";
+import { organizationSchema, websiteSchema } from "@/lib/schema";
 import "./globals.css";
 
 const nunito = Nunito({
@@ -105,6 +106,18 @@ export default function RootLayout({
         the builder's app/index.php, line for line.
       */}
       <head>
+        {/* Organization + WebSite: site-wide identity, so every page carries them. The
+            page-specific Product and FAQPage blocks live in app/page.tsx. @id values cross
+            reference, which is what lets Google treat them as one graph rather than three
+            unrelated islands. */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema()) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema()) }}
+        />
         <script
           dangerouslySetInnerHTML={{
             __html: `!function(f,b,e,v,n,t,s)
