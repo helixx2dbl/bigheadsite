@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Nunito, Pacifico } from "next/font/google";
 import { organizationSchema, websiteSchema } from "@/lib/schema";
+import { BUILD_HREF } from "@/lib/pricing";
 import "./globals.css";
 
 const nunito = Nunito({
@@ -36,10 +37,21 @@ const FACEBOOK_PIXEL_ID = "1710224520061524";
 // G- is GA4 (analytics), AW- is Google Ads (conversions). Both get their own gtag('config')
 // call against the same dataLayer.
 //
-// Note the builder carries a DIFFERENT GA4 id (theshortyears' G-N4N3JQY3G5) and no AW- at
-// all. That is the other dev's to reconcile — do not "fix" it from here.
+// The builder carries the SAME G- and AW- ids (app/index.php) and fires the real Purchase
+// conversion there (label SFEtCLn4zfEcEI_yudhE, with the order total and the order id).
 const GA4_ID = "G-XG8FW8WJKG";
 const GOOGLE_ADS_ID = "AW-18439108879";
+
+// Google Ads "click through to the builder" conversion. An INTERACTION, not a purchase: it
+// fires when someone follows any link into app.bigheadbuilder.com, and must never share a
+// label with the Purchase conversion above or every visit to the builder counts as a sale.
+// In Google Ads this action should be SECONDARY (observed, not bid on) and count ONE per
+// click — otherwise bidding optimises for clicks rather than orders.
+const GOOGLE_ADS_CLICK_LABEL = "5kx0CISvzfEcEI_yudhE";
+
+// Derived from the one place the builder's address lives, so a move of the app host moves
+// what counts as "clicking through" with it.
+const APP_HOST = new URL(BUILD_HREF).hostname;
 
 const TITLE = "BigHead Builder | Big Heads on a Stick";
 const DESCRIPTION =
@@ -138,6 +150,19 @@ fbq('track', 'PageView');`,
           rather than being inlined. The config block below has to run AFTER it in document
           order — gtag() queues into dataLayer, so order matters for the queue, not for the
           fetch.
+
+          The IIFE after the configs is the click-through conversion. It is ONE delegated
+          listener on document rather than an onClick on each CTA, so every link into the
+          builder counts — Nav, Hero, FinalCta, PageHeader, BuildButton, find-my-order, and any
+          added later — with nothing to remember per component. Deliberately NOT Google's
+          gtag_report_conversion(url) helper: that cancels the click and navigates from
+          event_callback, which leaves the link dead whenever gtag.js is blocked (ad blockers,
+          so a real share of visitors) and breaks cmd-click to a new tab. transport_type
+          'beacon' lets the hit outlive the navigation instead, so the link is never touched.
+          Capture phase so a component calling stopPropagation cannot hide the click, auxclick
+          for middle-click new tabs, and once per page load so a double-tap counts once. No
+          value and no empty transaction_id — a hardcoded 1.0 is fiction, and Ads falls back
+          to the action's configured default.
         */}
         <script
           async
@@ -149,7 +174,23 @@ fbq('track', 'PageView');`,
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', '${GA4_ID}');
-gtag('config', '${GOOGLE_ADS_ID}');`,
+gtag('config', '${GOOGLE_ADS_ID}');
+(function(){
+  var fired = false;
+  function onClick(e){
+    if (fired) return;
+    if (e.type === 'auxclick' && e.button !== 1) return;
+    var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+    if (!a || a.hostname !== '${APP_HOST}') return;
+    fired = true;
+    gtag('event', 'conversion', {
+      send_to: '${GOOGLE_ADS_ID}/${GOOGLE_ADS_CLICK_LABEL}',
+      transport_type: 'beacon'
+    });
+  }
+  document.addEventListener('click', onClick, true);
+  document.addEventListener('auxclick', onClick, true);
+})();`,
           }}
         />
       </head>
