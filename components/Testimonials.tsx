@@ -4,39 +4,52 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 
-const testimonials = [
+type Testimonial = {
+  src: string;
+  quote: string;
+  events: string[];
+  heads: number;
+  refunded: number;
+  /** Landscape photo: renders a wider 4:3 card instead of the 3:4 default. */
+  wide?: boolean;
+};
+
+const testimonials: Testimonial[] = [
   {
     src: "/photos/IMG_4713.jpg",
     quote:
       "Held my own head at the finish line. Confused everyone. Worth it.",
-    tag: "@FINISHLINE_PHIL",
-    event: "Ironman",
+    events: ["Ironman"],
     heads: 3,
     refunded: 26,
   },
   {
-    src: "/photos/IMG_4690.jpg",
+    src: "/photos/IMG_5543.jpg",
     quote:
-      "Brought my buddy's face to his own 40th. He teared up. Ten out of ten.",
-    tag: "@BIGRICK52",
-    event: "Birthday",
+      "First game of the season, St Brown with 2 TDs. Could he do it without me? We may never know.",
+    events: ["NFL", "Detroit Lions", "Stadium Swim"],
     heads: 1,
     refunded: 4,
   },
   {
     src: "/photos/IMG_0106.jpg",
     quote: "Two heads, one boat, zero regrets.",
-    tag: "@LAKE_DAY_LARRY",
-    event: "Bachelor party",
+    events: ["Lake day", "CDA"],
     heads: 2,
     refunded: 11,
   },
   {
-    src: "/photos/IMG_4716.jpg",
+    src: "/photos/IMG_5401.jpg",
+    quote: "Have you seen Brooks? Has ANYONE seen Brooks?",
+    events: ["Bachelor party", "MGM Grand Lazy River"],
+    heads: 1,
+    refunded: 0,
+  },
+  {
+    src: "/photos/IMG_4696.jpg",
     quote:
       "Got three scans at one tailgate. This thing literally pays for itself.",
-    tag: "@QUESO_QUEEN",
-    event: "Tailgate",
+    events: ["Tailgate"],
     heads: 5,
     refunded: 58,
   },
@@ -58,7 +71,7 @@ function MetaItem({
   const isStar = icon === "star";
   return (
     <span
-      className={`inline-flex items-center gap-2 text-sm font-bold ${
+      className={`inline-flex items-center gap-2 text-xs font-bold sm:text-sm ${
         isStar ? "text-berry" : "text-ink/60"
       }`}
     >
@@ -103,15 +116,15 @@ export default function Testimonials() {
     <section className="overflow-hidden bg-cream-deep py-16 md:py-24">
       <div className="mx-auto max-w-5xl px-6">
         <div className="text-center">
-          <p className="font-script text-3xl text-teal">
+          <p className="font-script text-2xl text-teal sm:text-3xl">
             don&apos;t take our word for it
           </p>
-          <h2 className="mt-3 text-3xl font-black text-ink md:text-4xl">
+          <h2 className="mt-3 text-2xl font-black text-ink sm:text-3xl md:text-4xl">
             Straight from the superfans
           </h2>
         </div>
 
-        <div className="mt-12 min-h-[26rem] md:min-h-[19rem]">
+        <div className="mt-10 min-h-[22rem] sm:mt-12 sm:min-h-[26rem] md:min-h-[19rem]">
           <AnimatePresence mode="wait">
             <motion.figure
               key={index}
@@ -119,30 +132,46 @@ export default function Testimonials() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -90 }}
               transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-              className="flex flex-col items-center justify-center gap-8 md:flex-row md:gap-14"
+              className="flex flex-col items-center justify-center gap-6 sm:gap-8 md:flex-row md:gap-14"
             >
-              <div className="w-52 shrink-0 -rotate-2 rounded-2xl bg-white p-3 pb-4 shadow-xl md:w-64">
-                <div className="relative aspect-[3/4] overflow-hidden rounded-xl">
+              <div
+                className={`${
+                  t.wide ? "w-72 md:w-[22rem]" : "w-52 md:w-64"
+                } shrink-0 -rotate-2 rounded-2xl bg-white p-2 pb-2.5 shadow-xl sm:p-3 sm:pb-4`}
+              >
+                <div
+                  className={`relative ${
+                    t.wide ? "aspect-[4/3]" : "aspect-[3/4]"
+                  } overflow-hidden rounded-xl`}
+                >
                   <Image
                     src={t.src}
-                    alt={`BigHead in the wild, shared by ${t.tag}`}
+                    alt="A BigHead out in the wild, sent in by a customer"
                     fill
-                    sizes="(min-width: 768px) 256px, 208px"
+                    sizes={
+                      t.wide
+                        ? "(min-width: 768px) 352px, 288px"
+                        : "(min-width: 768px) 256px, 208px"
+                    }
                     className="object-cover"
                   />
                 </div>
               </div>
               <div className="max-w-md text-center md:text-left">
-                <span className="inline-block -translate-y-1 rounded-full border-2 border-teal/30 bg-cream px-3.5 py-1 text-xs font-extrabold uppercase tracking-wide text-teal-deep">
-                  {t.event}
-                </span>
-                <blockquote className="mt-3 text-2xl font-extrabold leading-snug text-ink md:text-3xl">
+                <div className="flex -translate-y-1 flex-wrap justify-center gap-2 md:justify-start">
+                  {t.events.map((event) => (
+                    <span
+                      key={event}
+                      className="inline-block rounded-full border-2 border-teal/30 bg-cream px-3 py-0.5 text-[0.7rem] font-extrabold uppercase tracking-wide text-teal-deep sm:px-3.5 sm:py-1 sm:text-xs"
+                    >
+                      {event}
+                    </span>
+                  ))}
+                </div>
+                <blockquote className="mt-3 text-xl font-extrabold leading-snug text-ink sm:text-2xl md:text-3xl">
                   &ldquo;{t.quote}&rdquo;
                 </blockquote>
-                <figcaption className="mt-5 text-sm font-black uppercase tracking-[0.2em] text-berry">
-                  {t.tag}
-                </figcaption>
-                <div className="mt-5 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 border-t-2 border-ink/5 pt-4 md:justify-start">
+                <div className="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 border-t-2 border-ink/5 pt-4 md:justify-start">
                   <MetaItem icon="head">
                     {`${t.heads} ${t.heads === 1 ? "head" : "heads"} ordered`}
                   </MetaItem>

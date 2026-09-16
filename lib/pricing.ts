@@ -80,7 +80,7 @@ export const PRICE_ROWS: readonly PriceRow[] = [
 // builder's box meter makes on the options step.
 export const SHIPPING_BANNER = {
   headline: `Flat $${PRICE_SHIPPING_PER_BOX} shipping per box.`,
-  detail: `Up to ${SHIPPING_HEADS_PER_BOX} heads fit in one box — the ${SHIPPING_HEADS_PER_BOX}th ships for the same $${PRICE_SHIPPING_PER_BOX} as the 1st.`,
+  detail: `Up to ${SHIPPING_HEADS_PER_BOX} heads fit in one box - the ${SHIPPING_HEADS_PER_BOX}th ships for the same $${PRICE_SHIPPING_PER_BOX} as the 1st.`,
 };
 
 // Optional add-on: if the automatic cutout doesn't nail a photo, the customer

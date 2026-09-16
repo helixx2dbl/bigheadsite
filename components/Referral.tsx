@@ -9,6 +9,11 @@ import { REFERRAL_PERCENT } from "@/lib/pricing";
 // One number drives both sides of this — REFERRAL_PERCENT, which mirrors the app's
 // AFFILIATE_CODE_PERCENTAMOUNT. The old copy promised a points balance and $25 Visa
 // gift cards; neither exists anywhere in the app, so both are gone.
+//
+// Nor is the code chosen by the buyer. Services_Affiliates.createAffiliateCode builds it
+// as substr(order email, 0, 3) . order id — "should look like tyl2345" — so the copy must
+// not offer a handle or gamertag. The payout cap IS real: processCouponItem clamps each
+// refund to the original payment's getAmountRemaining().
 const ladder = [
   {
     n: "1",
@@ -18,7 +23,7 @@ const ladder = [
   {
     n: "2",
     title: "You get the same back",
-    body: `Whatever they save, we refund to your card \u2014 ${REFERRAL_PERCENT}% of what they spend. Not a credit, not a coupon. Actual money, back where it came from.`,
+    body: `Whatever they save, we refund to your card - ${REFERRAL_PERCENT}% of what they spend. Not a credit, not a coupon. Actual money, back where it came from.`,
   },
   {
     n: "3",
@@ -101,9 +106,9 @@ export default function Referral() {
               Every head ships with your own QR code.
             </motion.h2>
             <motion.p {...fadeUp} className="mt-6 text-lg font-semibold text-cream/75">
-              Pick a referral handle, like a gamertag, and we print it as QR
-              stickers on your order. Big heads attract big questions, and when
-              someone asks, the answer is easy:
+              Every order comes with its own QR code, printed on a card and
+              packed in with your heads. Big heads attract big questions, and
+              when someone asks, the answer is easy:
             </motion.p>
             <motion.div {...fadeUp}>
               <RotatingAnswer />
@@ -170,7 +175,7 @@ export default function Referral() {
                 />
               </div>
               <p className="mt-5 text-center text-2xl font-black tracking-tight text-ink">
-                @BIGRICK52
+                TYL2345
               </p>
               <p className="mt-1 text-center text-sm font-bold uppercase tracking-[0.2em] text-berry">
                 Scan my code &amp; get one

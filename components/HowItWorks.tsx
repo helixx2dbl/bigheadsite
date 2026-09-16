@@ -38,7 +38,7 @@ const steps = [
   {
     n: "04",
     title: "It ships to you",
-    body: "Ships flat in 1-2 business days with the stick and a strip of industrial-strength 3M tape. Press it on and you\u2019re done \u2014 flat-packing is what keeps it from arriving bent.",
+    body: "Ships flat in 1-2 business days with the stick and a strip of industrial-strength 3M tape. Press it on and you\u2019re done - flat-packing is what keeps it from arriving bent.",
     accent: "bg-teal",
     icon: "/icons/shipping.svg",
     faq: "shipping",
@@ -78,7 +78,8 @@ export default function HowItWorks() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.6, delay: i * 0.12 }}
-              className="rounded-3xl bg-cream-deep p-7 shadow-md transition-transform hover:-translate-y-1.5 hover:shadow-lg"
+              whileHover={{ y: -6 }}
+              className="rounded-3xl bg-cream-deep p-7 shadow-md transition-shadow hover:shadow-lg"
             >
               <div className="flex items-start justify-between gap-4">
                 <span
@@ -113,7 +114,7 @@ export default function HowItWorks() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="relative mt-16 grid items-center gap-8 rounded-3xl border-[3px] border-dashed border-cream/50 bg-teal p-8 pt-10 md:grid-cols-2 md:p-12 md:pt-12"
+          className="relative -mx-6 mt-16 grid items-center gap-8 border-0 border-dashed border-cream/50 bg-teal p-6 pt-10 sm:mx-0 sm:rounded-3xl sm:border-[3px] sm:p-8 sm:pt-10 md:grid-cols-2 md:p-12 md:pt-12"
         >
           <div className="absolute -top-6 left-6 -rotate-2 rounded-full bg-berry px-6 py-2.5 font-script text-xl text-cream shadow-lg md:left-10 md:text-2xl">
             Ordering for the Group?
@@ -126,16 +127,16 @@ export default function HowItWorks() {
               <InfoLink faq="split" className="ml-2 align-middle text-cream" />
             </h3>
             <p className="mt-4 font-semibold leading-relaxed text-cream/80">
-              Check out once for the whole crew and we hand you a branded repay
-              link with the cost per head already split, shipping included.
-              Friends square up from the link with Venmo, Zelle, or
-              PayPal, or they can pay on BigHead Builder and we refund your
-              order automatically.
+              Check out once for the whole crew and we hand you a link with the
+              cost per head already worked out, shipping included. Add your
+              Venmo, Cash App, PayPal or Zelle and the crew squares up with you
+              directly, or they can pay us by card and we refund that share of
+              your order automatically.
             </p>
           </div>
 
           {/* Example repay message */}
-          <div className="rounded-2xl bg-cream p-6 shadow-xl md:rotate-1">
+          <div className="rounded-2xl bg-cream p-4 shadow-xl sm:p-6 md:rotate-1">
             <div className="flex items-center gap-3">
               <Image
                 src="/brand/head.svg"
@@ -148,10 +149,10 @@ export default function HowItWorks() {
               />
               <div>
                 <p className="text-sm font-black text-ink">
-                  @BIGRICK52 sent you a repay link
+                  Rick sent you a repay link
                 </p>
-                <p className="text-xs font-bold text-ink/50">
-                  bigheadbuilder.com/pay/BIGRICK52/BH-4821
+                <p className="break-all text-xs font-bold text-ink/50">
+                  app.bigheadbuilder.com/split/a3f9c1&hellip;
                 </p>
               </div>
             </div>
@@ -160,7 +161,7 @@ export default function HowItWorks() {
               shipping split.&rdquo;
             </p>
             <div className="mt-4 flex flex-wrap gap-2">
-              {["Venmo", "Zelle", "PayPal", "Pay on BigHead"].map((method) => (
+              {["Venmo", "Cash App", "PayPal", "Zelle", "Pay on BigHead"].map((method) => (
                 <span
                   key={method}
                   className={`rounded-full px-3.5 py-1.5 text-xs font-extrabold ${
@@ -183,7 +184,12 @@ export default function HowItWorks() {
           transition={{ duration: 0.6 }}
           className="mt-14 text-center"
         >
-          <BuildButton />
+          <p className="font-script text-3xl text-teal md:text-4xl">
+            &ldquo;I have the best idea for a Big Head!&rdquo;
+          </p>
+          <div className="mt-6">
+            <BuildButton label="Get Started Then!" />
+          </div>
         </motion.div>
       </div>
     </section>

@@ -78,7 +78,7 @@ export default function Hero() {
   const subDelay = biggerStart + 7 * biggerStep + 0.15;
 
   return (
-    <section className="relative h-screen overflow-hidden bg-cream">
+    <section className="relative h-[82svh] overflow-hidden bg-cream md:h-screen">
       {/* Loader: full sticker logo so the brand still gets a beat */}
       <AnimatePresence>
         {!ready && (

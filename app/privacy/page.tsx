@@ -32,8 +32,9 @@ export default function PrivacyPolicyPage() {
           securely and used only to produce your order.
         </li>
         <li>
-          <strong>Order details:</strong>{" "}quantities, sizes, and any notes or referral handle tied to
-          your order.
+          <strong>Order details:</strong>{" "}quantities, sizes, and any notes tied to your order. If
+          you use group split-pay, the payment handles you choose to add (such as Venmo or
+          PayPal) so the crew can pay you back.
         </li>
         <li>
           <strong>Payment information:</strong>{" "}processed by our payment provider. We never see or

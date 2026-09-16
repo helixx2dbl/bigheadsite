@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
 import BuildButton from "./BuildButton";
 import InfoLink from "./InfoLink";
@@ -217,7 +216,7 @@ export default function Intro() {
           </motion.div>
         </div>
 
-        <div className="relative mx-auto h-[26rem] w-full max-w-md md:h-[32rem]">
+        <div className="relative mx-auto aspect-[10/9] w-full max-w-md">
           <motion.div
             initial={{ opacity: 0, y: 50, rotate: -8 }}
             whileInView={{ opacity: 1, y: 0, rotate: -5 }}
@@ -225,12 +224,14 @@ export default function Intro() {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="absolute left-0 top-6 aspect-[3/4] w-3/5 overflow-hidden rounded-3xl border-[6px] border-white shadow-2xl"
           >
-            <Image
-              src="/photos/IMG_0106.jpg"
-              alt="Holding two giant BigHeads on the lake"
-              fill
-              sizes="(min-width: 768px) 280px, 60vw"
-              className="object-cover"
+            <video
+              src="/photos/IMG_4836.mp4"
+              poster="/photos/IMG_4836_poster.jpg"
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="absolute inset-0 h-full w-full object-cover"
             />
           </motion.div>
           <motion.div
@@ -238,10 +239,12 @@ export default function Intro() {
             whileInView={{ opacity: 1, y: 0, rotate: 4 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.7, delay: 0.25 }}
-            className="absolute right-0 top-24 aspect-[3/4] w-3/5 overflow-hidden rounded-3xl border-[6px] border-white shadow-2xl"
+            className="absolute right-0 top-0 aspect-[2/3] w-3/5 overflow-hidden rounded-3xl border-[6px] border-white shadow-2xl"
           >
             <video
-              src="/photos/IMG_4836.mp4"
+              src="/photos/IMG_5471.mp4"
+              poster="/photos/IMG_5471_poster.jpg"
+              aria-label="Giant BigHeads passed around a Vegas pool party"
               autoPlay
               muted
               loop

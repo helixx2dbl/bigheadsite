@@ -13,12 +13,12 @@ export const faqs = [
   {
     id: "size",
     q: "How big are the heads?",
-    a: "Big. Each BigHead is about 24 inches tall, roughly three times life size, printed on rigid, lightweight board. It arrives flat with a sturdy stick and a strip of industrial-strength 3M double-sided tape \u2014 you press the stick on yourself, which takes about ten seconds. Easy to wave for a whole game, impossible to miss from the bleachers.",
+    a: "Big. Each BigHead is about 24 inches tall, roughly three times life size, printed on rigid, lightweight board. It arrives flat with a sturdy stick and a strip of industrial-strength 3M double-sided tape - you press the stick on yourself, which takes about ten seconds. Easy to wave for a whole game, impossible to miss from the bleachers.",
   },
   {
     id: "price",
     q: "How much do they cost?",
-    a: `$25 for the first print of a design, and $17.50 for every extra copy of that same design \u2014 30% off. So one face printed three times is $25 + $17.50 + $17.50. Three different faces is $25 each, because each one is a new design to cut. Shipping is a flat $${PRICE_SHIPPING_PER_BOX} per box, and up to ${SHIPPING_HEADS_PER_BOX} heads fit in a box.`,
+    a: `$25 for the first print of a design, and $17.50 for every extra copy of that same design - 30% off. So one face printed three times is $25 + $17.50 + $17.50. Three different faces is $25 each, because each one is a new design to cut. Shipping is a flat $${PRICE_SHIPPING_PER_BOX} per box, and up to ${SHIPPING_HEADS_PER_BOX} heads fit in a box.`,
   },
   {
     id: "photo",
@@ -28,12 +28,12 @@ export const faqs = [
   {
     id: "shipping",
     q: "How long does shipping take?",
-    a: `Every head is cut and assembled to order, which takes 1-2 business days, then 2-5 days in transit. Shipping anywhere in the US is a flat $${PRICE_SHIPPING_PER_BOX} per box, and one box holds up to ${SHIPPING_HEADS_PER_BOX} heads \u2014 so ordering for the whole crew costs no more to ship than ordering one. Got a hard date coming up? Get in touch before you order and we'll tell you honestly whether we can make it.`,
+    a: `Every head is cut and assembled to order, which takes 1-2 business days, then 2-5 days in transit. Shipping anywhere in the US is a flat $${PRICE_SHIPPING_PER_BOX} per box, and one box holds up to ${SHIPPING_HEADS_PER_BOX} heads - so ordering for the whole crew costs no more to ship than ordering one. Got a hard date coming up? Get in touch before you order and we'll tell you honestly whether we can make it.`,
   },
   {
     id: "assembly",
     q: "Do I have to put it together?",
-    a: "Only the stick, and only once. Your BigHead ships flat with the stick alongside it and a strip of industrial-strength 3M double-sided tape already cut to size. Peel, press the stick to the back, done \u2014 about ten seconds, no tools. We ship it flat on purpose: a pre-attached stick means a much bigger box and a head that arrives creased at the corners.",
+    a: "Only the stick, and only once. Your BigHead ships flat with the stick alongside it and a strip of industrial-strength 3M double-sided tape already cut to size. Peel, press the stick to the back, done - about ten seconds, no tools. We ship it flat on purpose: a pre-attached stick means a much bigger box and a head that arrives creased at the corners.",
   },
   {
     id: "durability",
@@ -43,17 +43,17 @@ export const faqs = [
   {
     id: "referral",
     q: "How does the referral program work?",
-    a: "Every head ships with a QR code on the back carrying a discount code that's yours. Anyone who scans it gets 10% off their order, and we refund that same amount \u2014 10% of what they spend \u2014 straight back to your card. It keeps paying out until your own order is fully refunded, so a few scans at one tailgate can cover the whole thing.",
+    a: "Every order ships with a QR card carrying a discount code that's yours, and it goes on the back of every head in the order. We generate the code for you at checkout - there is nothing to pick or set up. Anyone who scans it gets 10% off their order, and we refund that same amount - 10% of what they spend - straight back to your card. It keeps paying out until your own order is fully refunded, so a few scans at one tailgate can cover the whole thing. The code stays active for three months.",
   },
   {
     id: "group",
     q: "Can I order a bunch for a group?",
-    a: "Absolutely \u2014 one order can hold up to nine different faces, and as many copies of each as you like. The saving is on copies rather than order size: extra prints of the same face are $17.50 instead of $25. The whole crew ships together in one box.",
+    a: "Absolutely - one order can hold up to nine different faces, and as many copies of each as you like. The saving is on copies rather than order size: extra prints of the same face are $17.50 instead of $25. The whole crew ships together in one box.",
   },
   {
     id: "split",
     q: "I fronted the group order. How do I get paid back?",
-    a: "After checkout we generate a branded repay link that splits your total per head, shipping included. Send it to the crew: they can pay you back instantly with Venmo, Zelle, or PayPal, or pay through BigHead Builder and we refund that share of your order automatically. The link also carries your order info, so anyone who wants their own head can buy through it, and that purchase refunds you too.",
+    a: "After checkout we generate a repay link that splits your total per head, shipping included. Add your Venmo, Cash App, PayPal or Zelle and send the link to the crew: they can pay you directly through whichever one you use, or pay us by card, in which case we refund that share of your order automatically. The link also shows you who has chipped in so far.",
   },
   {
     id: "pets",
