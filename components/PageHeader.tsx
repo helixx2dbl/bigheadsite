@@ -24,6 +24,7 @@ export default function PageHeader() {
             route to prefetch */}
         <a
           href={BUILD_HREF}
+          data-cta="page-header"
           className="whitespace-nowrap rounded-full bg-berry px-4 py-2.5 text-sm font-extrabold text-cream shadow-md transition-transform hover:scale-105 hover:bg-berry-deep sm:px-5"
         >
           Build yours

@@ -120,7 +120,7 @@ export default function Gallery() {
   const track = Array.from({ length: REPEATS }, () => photos).flat();
 
   return (
-    <section className="overflow-hidden bg-cream-deep py-24 md:py-28">
+    <section data-section="gallery" className="overflow-hidden bg-cream-deep py-24 md:py-28">
       <div className="mx-auto mb-12 max-w-6xl px-6 text-center">
         <p className="font-script text-3xl text-teal">spotted in the wild</p>
         <h2 className="mt-3 text-3xl font-black text-ink md:text-4xl">

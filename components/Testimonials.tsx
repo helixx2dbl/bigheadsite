@@ -113,7 +113,7 @@ export default function Testimonials() {
   const t = testimonials[index];
 
   return (
-    <section className="overflow-hidden bg-cream-deep py-16 md:py-24">
+    <section data-section="testimonials" className="overflow-hidden bg-cream-deep py-16 md:py-24">
       <div className="mx-auto max-w-5xl px-6">
         <div className="text-center">
           <p className="font-script text-2xl text-teal sm:text-3xl">

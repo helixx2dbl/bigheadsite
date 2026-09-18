@@ -10,6 +10,7 @@ import Testimonials from "@/components/Testimonials";
 import FinalCta from "@/components/FinalCta";
 import Faq from "@/components/Faq";
 import Footer from "@/components/Footer";
+import SectionTracking from "@/components/SectionTracking";
 import { faqSchema, productSchema } from "@/lib/schema";
 
 export default function Home() {
@@ -28,6 +29,7 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema()) }}
       />
+      <SectionTracking />
       <Nav />
       <Hero />
       <Marquee />

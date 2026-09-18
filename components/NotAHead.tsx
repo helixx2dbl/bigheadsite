@@ -221,7 +221,7 @@ export default function NotAHead() {
   })).filter(({ offset }) => offset <= 3 || offset === total - 1);
 
   return (
-    <section className="overflow-hidden bg-teal py-16 md:py-24">
+    <section data-section="not-a-head" className="overflow-hidden bg-teal py-16 md:py-24">
       <div className="mx-auto max-w-5xl px-6 text-center">
         <motion.p
           initial={{ opacity: 0, y: 24 }}
@@ -368,6 +368,7 @@ export default function NotAHead() {
 
       <div className="mt-10 flex justify-center px-6 md:mt-12">
         <BuildButton
+          cta="not-a-head"
           label="Put yours on a stick"
           className="!bg-cream !text-berry hover:!bg-white"
         />

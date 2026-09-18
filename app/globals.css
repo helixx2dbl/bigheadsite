@@ -251,6 +251,25 @@ body {
   font-weight: 800;
 }
 
+.prose-policy em {
+  font-style: italic;
+  color: var(--ink);
+}
+
+/* Cookie names in the privacy policy. Monospace so `_ga` and `_fbp` read as the
+   literal strings you'd search for in a browser's cookie list, sized down to sit
+   on the 600-weight body line without shouting. */
+.prose-policy code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.875em;
+  font-weight: 700;
+  color: var(--teal-deep);
+  background: color-mix(in srgb, var(--teal) 10%, transparent);
+  padding: 0.1em 0.35em;
+  border-radius: 0.25rem;
+  overflow-wrap: anywhere;
+}
+
 .prose-policy h2:first-child {
   margin-top: 0;
 }

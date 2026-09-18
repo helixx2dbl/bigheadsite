@@ -78,7 +78,7 @@ export default function Hero() {
   const subDelay = biggerStart + 7 * biggerStep + 0.15;
 
   return (
-    <section className="relative h-[82svh] overflow-hidden bg-cream md:h-screen">
+    <section data-section="hero" className="relative h-[82svh] overflow-hidden bg-cream md:h-screen">
       {/* Loader: full sticker logo so the brand still gets a beat */}
       <AnimatePresence>
         {!ready && (
@@ -193,6 +193,7 @@ export default function Hero() {
             </p>
             <a
               href={BUILD_HREF}
+              data-cta="hero"
               className="mt-6 inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-berry px-8 py-3.5 text-base font-black text-cream shadow-lg transition-transform hover:scale-105 hover:bg-berry-deep"
             >
               Build yours

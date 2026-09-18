@@ -9,13 +9,13 @@ export const metadata: Metadata = {
 
 export default function PrivacyPolicyPage() {
   return (
-    <PolicyPage kicker="the fine print" title="Privacy Policy" updated="August 2026">
+    <PolicyPage kicker="the fine print" title="Privacy Policy" updated="September 2026">
       <p>
         BigHead Builder (&ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;) turns the photos
         you send us into big heads on a stick. We take the trust that requires seriously, especially
         because you&rsquo;re handing us your pictures. This policy explains what we collect, how we use
-        it, and the control you have over it. It applies to bigheadbuilder.com and everything you order
-        through it.
+        it, and the control you have over it. It applies to bigheadbuilder.com, the builder at
+        app.bigheadbuilder.com, and everything you order through them.
       </p>
 
       <h2>Information we collect</h2>
@@ -41,8 +41,8 @@ export default function PrivacyPolicyPage() {
           store your full card number.
         </li>
         <li>
-          <strong>Basic usage data:</strong>{" "}things like browser type and pages visited, used to keep
-          the site working and improve it.
+          <strong>Basic usage data:</strong>{" "}things like browser type and pages visited, used to
+          keep the site working, improve it, and measure our advertising.
         </li>
       </ul>
 
@@ -69,14 +69,65 @@ export default function PrivacyPolicyPage() {
         <strong>we will never sell or trade it.</strong>{" "}We share information only when it&rsquo;s
         needed to complete what you asked us to do, for example, handing your address to a shipping
         carrier or your payment to our payment processor. Those partners may only use the information to
-        do their job for your order.
+        do their job for your order. We also share a limited amount of information with Google and Meta
+        to measure our advertising, which is described in full under{" "}
+        <strong>Cookies &amp; advertising</strong>{" "}below.
       </p>
 
-      <h2>Cookies &amp; analytics</h2>
+      <h2>Cookies &amp; advertising</h2>
       <p>
-        We use a small number of cookies and basic analytics to remember your session, understand how
-        the site is used, and improve it. You can block cookies in your browser settings, though parts
-        of the site may not work as smoothly if you do.
+        We use cookies and similar browser storage in two ways &mdash; making the builder work, and
+        measuring our advertising. The difference matters, because you can switch the second off
+        without breaking anything.
+      </p>
+      <ul>
+        <li>
+          <strong>Keeping your place in the builder:</strong>{" "}as you go, the builder saves your
+          progress in your own browser&rsquo;s storage, so closing the tab or hitting refresh
+          doesn&rsquo;t make you start over. That&rsquo;s your name, email address, shipping address,
+          any referral code you arrived with, and a reference to each photo you&rsquo;ve uploaded. The
+          photos themselves live on our servers &mdash; what&rsquo;s kept in your browser is only the
+          pointer to them. Once your order goes through, the photos and cart clear out; your name and
+          address stay, so ordering again is quicker. Clearing your browser data clears all of it, and
+          none of it is used for advertising.
+        </li>
+        <li>
+          <strong>Payment:</strong>{" "}our payment processor, Stripe, sets{" "}<code>__stripe_mid</code>
+          {" "}and{" "}<code>__stripe_sid</code>{" "}on app.bigheadbuilder.com to take payment and spot
+          fraud. Checkout will not work without them.
+        </li>
+        <li>
+          <strong>Analytics &amp; advertising:</strong>{" "}Google Analytics (<code>_ga</code>,{" "}
+          <code>_ga_*</code>, <code>_gid</code>), Google Ads (<code>_gcl_au</code>),
+          and the Meta pixel (<code>_fbp</code>, <code>_fbc</code>) run on both bigheadbuilder.com and
+          the builder. They tell us which ads bring people here and which pages lead to orders. The
+          builder also pings our advertising partner at arttrk.com when you start a build and when an
+          order completes, with the order total and order number. These are not necessary, and blocking
+          them breaks nothing.
+        </li>
+      </ul>
+      <p>
+        As you move through the builder, we also send Google and Meta a record of what happened so
+        their reporting matches ours &mdash; to Google from your browser, and to Meta both from your
+        browser and directly from our server. That record contains your email address, name, and city,
+        state, ZIP and country in hashed form (scrambled before they are sent, so they leave as
+        unreadable strings rather than plain text), your IP address and browser, the order total and
+        order number, and the advertising IDs above. We do this to measure whether our ads are working.
+        We are not handing over a customer list to be used for anything else, and{" "}
+        <strong>we never send them your photos</strong>.
+      </p>
+      <p>
+        You can block or delete any of this in your browser settings or with a tracking blocker, and
+        Google publishes a{" "}
+        <a
+          href="https://tools.google.com/dlpage/gaoptout"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          browser add-on
+        </a>{" "}
+        to opt out of Google Analytics everywhere. If you&rsquo;d rather we handled it, email us and
+        we&rsquo;ll remove your information from our advertising audiences.
       </p>
 
       <h2>How we protect it</h2>
@@ -121,9 +172,12 @@ export default function PrivacyPolicyPage() {
           <strong>Correct:</strong>{" "}ask us to fix inaccurate personal information.
         </li>
         <li>
-          <strong>Opt out of sale or sharing:</strong>{" "}we don&rsquo;t sell your personal information
-          or share it for cross-context behavioral advertising, so there&rsquo;s nothing to opt out of,
-          but the right stands.
+          <strong>Opt out of sale or sharing:</strong>{" "}we don&rsquo;t sell your personal
+          information, and we never have. We do share advertising identifiers and purchase data with
+          Google and Meta to measure our ads, which California counts as{" "}
+          <em>sharing for cross-context behavioral advertising</em>. To opt out, block the advertising
+          cookies described under{" "}<strong>Cookies &amp; advertising</strong>{" "}above, or email us
+          and we&rsquo;ll take care of it.
         </li>
         <li>
           <strong>No discrimination:</strong>{" "}we won&rsquo;t deny you service, charge you a different

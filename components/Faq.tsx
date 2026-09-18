@@ -46,7 +46,7 @@ export default function Faq() {
   }, []);
 
   return (
-    <section id="faq" className="scroll-mt-20 bg-cream-deep py-16 md:py-24">
+    <section id="faq" data-section="faq" className="scroll-mt-20 bg-cream-deep py-16 md:py-24">
       <div className="mx-auto max-w-3xl px-6">
         <div className="text-center">
           <p className="font-script text-3xl text-berry">got questions?</p>

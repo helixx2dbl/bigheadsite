@@ -30,6 +30,7 @@ export default function BuildPage() {
         </p>
         <a
           href={BUILD_HREF}
+          data-cta="build-redirect"
           className="mt-10 rounded-full bg-berry px-8 py-3.5 text-base font-black text-cream shadow-lg transition-transform hover:scale-105 hover:bg-berry-deep"
         >
           Build your BigHead

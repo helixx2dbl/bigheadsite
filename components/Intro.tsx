@@ -20,7 +20,7 @@ const fadeUp = {
 
 export default function Intro() {
   return (
-    <section className="mx-auto max-w-6xl px-6 pb-24 pt-14 md:pb-36 md:pt-20">
+    <section data-section="intro" className="mx-auto max-w-6xl px-6 pb-24 pt-14 md:pb-36 md:pt-20">
       <div className="grid items-center gap-14 md:grid-cols-2">
         <div>
           <motion.p {...fadeUp} className="font-script text-3xl text-teal">
@@ -212,7 +212,7 @@ export default function Intro() {
             }}
             className="mt-10 w-fit"
           >
-            <BuildButton />
+            <BuildButton cta="intro" />
           </motion.div>
         </div>
 

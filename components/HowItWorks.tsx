@@ -49,7 +49,7 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section className="bg-cream py-16 md:py-24">
+    <section data-section="how-it-works" className="bg-cream py-16 md:py-24">
       <div className="mx-auto max-w-6xl px-6">
         <motion.p
           initial={{ opacity: 0, y: 30 }}
@@ -188,7 +188,7 @@ export default function HowItWorks() {
             &ldquo;I have the best idea for a Big Head!&rdquo;
           </p>
           <div className="mt-6">
-            <BuildButton label="Get Started Then!" />
+            <BuildButton cta="how-it-works" label="Get Started Then!" />
           </div>
         </motion.div>
       </div>

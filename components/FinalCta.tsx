@@ -13,7 +13,7 @@ import {
 
 export default function FinalCta() {
   return (
-    <section id="build" className="px-6 pb-24 pt-10 md:pb-32 md:pt-14">
+    <section id="build" data-section="final-cta" className="px-6 pb-24 pt-10 md:pb-32 md:pt-14">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -83,6 +83,7 @@ export default function FinalCta() {
           </p>
           <a
             href={BUILD_HREF}
+            data-cta="final-cta"
             className="mt-10 inline-block whitespace-nowrap rounded-full bg-cream px-10 py-4 text-lg font-black text-teal-deep shadow-lg transition-transform hover:scale-105"
           >
             Build yours

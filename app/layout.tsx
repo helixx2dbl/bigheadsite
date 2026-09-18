@@ -2,6 +2,13 @@ import type { Metadata } from "next";
 import { Nunito, Pacifico } from "next/font/google";
 import { organizationSchema, websiteSchema } from "@/lib/schema";
 import { BUILD_HREF } from "@/lib/pricing";
+import {
+  EVENT_CTA_CLICK,
+  FACEBOOK_PIXEL_ID,
+  GA4_ID,
+  GOOGLE_ADS_CLICK_LABEL,
+  GOOGLE_ADS_ID,
+} from "@/lib/analytics";
 import "./globals.css";
 
 const nunito = Nunito({
@@ -22,32 +29,7 @@ const pacifico = Pacifico({
 // blank. Confirm this hostname before launch — canonical and sitemap urls are built from it.
 const SITE_URL = "https://bigheadbuilder.com";
 
-// The SAME Meta pixel the builder fires (in the bigheadbuilderapps repo:
-// app/index.php's fbq init, CONFIG.FACEBOOK_PIXEL_ID, and server side
-// mAppInformation["FACEBOOK_PIXEL"]). One pixel across both hosts is deliberate: a visitor
-// lands here and converts over there, so splitting them would cut the funnel in half and
-// leave this page with no attributable revenue.
-//
-// This page fires PageView only. Every conversion event — Lead, AddToCart,
-// InitiateCheckout, AddPaymentInfo, Purchase — happens in the builder, because that is
-// where the funnel actually is. Nothing here should start firing those.
-const FACEBOOK_PIXEL_ID = "1710224520061524";
-
-// Google tag. TWO destinations off ONE gtag.js load, which is how Google wants it done:
-// G- is GA4 (analytics), AW- is Google Ads (conversions). Both get their own gtag('config')
-// call against the same dataLayer.
-//
-// The builder carries the SAME G- and AW- ids (app/index.php) and fires the real Purchase
-// conversion there (label SFEtCLn4zfEcEI_yudhE, with the order total and the order id).
-const GA4_ID = "G-XG8FW8WJKG";
-const GOOGLE_ADS_ID = "AW-18439108879";
-
-// Google Ads "click through to the builder" conversion. An INTERACTION, not a purchase: it
-// fires when someone follows any link into app.bigheadbuilder.com, and must never share a
-// label with the Purchase conversion above or every visit to the builder counts as a sale.
-// In Google Ads this action should be SECONDARY (observed, not bid on) and count ONE per
-// click — otherwise bidding optimises for clicks rather than orders.
-const GOOGLE_ADS_CLICK_LABEL = "5kx0CISvzfEcEI_yudhE";
+// Tag ids and GA4 event names live in lib/analytics.ts — the section tracker needs them too.
 
 // Derived from the one place the builder's address lives, so a move of the app host moves
 // what counts as "clicking through" with it.
@@ -151,18 +133,24 @@ fbq('track', 'PageView');`,
           order — gtag() queues into dataLayer, so order matters for the queue, not for the
           fetch.
 
-          The IIFE after the configs is the click-through conversion. It is ONE delegated
-          listener on document rather than an onClick on each CTA, so every link into the
-          builder counts — Nav, Hero, FinalCta, PageHeader, BuildButton, find-my-order, and any
-          added later — with nothing to remember per component. Deliberately NOT Google's
-          gtag_report_conversion(url) helper: that cancels the click and navigates from
-          event_callback, which leaves the link dead whenever gtag.js is blocked (ad blockers,
-          so a real share of visitors) and breaks cmd-click to a new tab. transport_type
-          'beacon' lets the hit outlive the navigation instead, so the link is never touched.
-          Capture phase so a component calling stopPropagation cannot hide the click, auxclick
-          for middle-click new tabs, and once per page load so a double-tap counts once. No
-          value and no empty transaction_id — a hardcoded 1.0 is fiction, and Ads falls back
-          to the action's configured default.
+          The IIFE after the configs handles clicks into the builder, and sends TWO events
+          off one listener: a GA4 cta_click on every press (which CTA is pulling its weight)
+          and the Google Ads click-through conversion once per page load (did this visitor
+          cross over). Splitting the guard is the whole point — see the comments inside.
+
+          It is ONE delegated listener on document rather than an onClick on each CTA, so
+          every link into the builder counts — Nav, Hero, FinalCta, PageHeader, BuildButton,
+          find-my-order, and any added later — with nothing to remember per component. A new
+          CTA only needs data-cta to be named correctly in reporting; it is counted either
+          way. Deliberately NOT Google's gtag_report_conversion(url) helper: that cancels the
+          click and navigates from event_callback, which leaves the link dead whenever
+          gtag.js is blocked (ad blockers, so a real share of visitors) and breaks cmd-click
+          to a new tab. transport_type 'beacon' lets the Ads hit outlive the navigation
+          instead, so the link is never touched; GA4 does that on its own and does not take
+          the parameter. Capture phase so a component calling stopPropagation cannot hide the
+          click, and auxclick for middle-click new tabs. No value and no empty
+          transaction_id — a hardcoded 1.0 is fiction, and Ads falls back to the action's
+          configured default.
         */}
         <script
           async
@@ -178,10 +166,25 @@ gtag('config', '${GOOGLE_ADS_ID}');
 (function(){
   var fired = false;
   function onClick(e){
-    if (fired) return;
     if (e.type === 'auxclick' && e.button !== 1) return;
     var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
     if (!a || a.hostname !== '${APP_HOST}') return;
+
+    // GA4 first, and on EVERY click. This answers a different question from the Ads
+    // conversion below, so it deliberately does not share the one-shot guard: "which
+    // CTA earns its place" needs each press counted, while "did this visitor click
+    // through" needs exactly one. send_to pins it to the G- property, because an event
+    // with no send_to goes to every configured destination — including AW-, which would
+    // litter the Ads account with an event it has no conversion action for.
+    // cta_location comes from data-cta on the link; 'untagged' is a real answer that
+    // says a new CTA shipped without one, and is easier to spot than a missing event.
+    gtag('event', '${EVENT_CTA_CLICK}', {
+      send_to: '${GA4_ID}',
+      cta_location: a.getAttribute('data-cta') || 'untagged',
+      link_url: a.href
+    });
+
+    if (fired) return;
     fired = true;
     gtag('event', 'conversion', {
       send_to: '${GOOGLE_ADS_ID}/${GOOGLE_ADS_CLICK_LABEL}',

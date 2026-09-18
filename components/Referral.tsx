@@ -91,7 +91,7 @@ const fadeUp = {
 
 export default function Referral() {
   return (
-    <section className="overflow-hidden bg-teal-deep py-24 md:py-32">
+    <section data-section="referral" className="overflow-hidden bg-teal-deep py-24 md:py-32">
       <div className="mx-auto max-w-6xl px-6">
         <div className="grid items-center gap-16 lg:grid-cols-2">
           {/* Copy + earnings ladder */}
