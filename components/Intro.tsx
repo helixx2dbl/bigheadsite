@@ -1,5 +1,6 @@
 "use client";
 
+import { Fragment } from "react";
 import { motion } from "framer-motion";
 import BuildButton from "./BuildButton";
 import InfoLink from "./InfoLink";
@@ -114,31 +115,46 @@ export default function Intro() {
           {/* What it costs. Priced per DESIGN, matching the builder: the first
               print of a face is full price and extra copies of that same face
               are discounted. Not order-quantity tiers. */}
-          <motion.div {...fadeUp} className="mt-8 space-y-2.5">
-            {PRICE_ROWS.map((row) => (
-              <div
-                key={row.label}
-                className="flex items-baseline justify-between gap-4 border-b border-ink/10 pb-2.5 last:border-0"
-              >
-                <span className="text-sm font-extrabold text-ink md:text-base">
-                  {row.label}
-                </span>
-                <span className="flex shrink-0 items-baseline gap-2 text-sm font-black text-berry md:text-base">
-                  {row.price !== null && <span>${row.price}</span>}
-                  {row.note && (
-                    <span className="text-xs font-bold uppercase tracking-wide text-teal-deep md:text-sm">
-                      {row.note}
+          <motion.div {...fadeUp} className="mt-8">
+            {/* Two columns — label / price — so the dollar signs stack. The chip
+                rides inside the price cell rather than in a third column: on its own
+                it would be sized by the grid's column gap and pushed off the number
+                it qualifies. Prices are LEFT-aligned in their column; right-aligning
+                lines up the last digit instead, putting $17.50's decimals under
+                $25's "5". `w-fit` keeps the whole thing hugging its content rather
+                than stretching to the column's full width.
+                Rows after the first are teal, which is the block's only cue that
+                they hang off the first one. One rule under the pair closes the group
+                off from the shipping band; there is none between the rows. */}
+            <div className="border-b border-ink/10 pb-3">
+              <div className="grid w-fit max-w-full grid-cols-[auto_auto] items-baseline gap-x-4 gap-y-1.5">
+                {PRICE_ROWS.map((row, i) => (
+                  <Fragment key={row.label}>
+                    <span
+                      className={`text-sm font-extrabold md:text-base ${
+                        i > 0 ? "text-teal-deep" : "text-ink"
+                      }`}
+                    >
+                      {row.label}
                     </span>
-                  )}
-                </span>
+                    <span className="flex items-baseline gap-2 text-sm font-black text-berry md:text-base">
+                      {row.price !== null && <span>${row.price}</span>}
+                      {row.note && (
+                        <span className="rounded-full bg-teal/12 px-2.5 py-0.5 text-[11px] font-black uppercase tracking-wide text-teal-deep md:text-xs">
+                          {row.note}
+                        </span>
+                      )}
+                    </span>
+                  </Fragment>
+                ))}
               </div>
-            ))}
+            </div>
 
             {/* Shipping gets its own band rather than a third table row. Sat under the two
                 per-design prices it would be read as a third per-head charge, which is the
                 one thing it is not — it is per BOX. Teal against the cream table, so the
                 "same $5 for eight as for one" still lands as a perk. */}
-            <div className="!mt-4 flex items-center gap-3 rounded-xl border-2 border-teal/25 bg-teal/8 px-4 py-3">
+            <div className="mt-4 flex items-center gap-3 rounded-xl border-2 border-teal/25 bg-teal/8 px-4 py-3">
               <svg
                 viewBox="0 0 24 24"
                 aria-hidden
@@ -224,6 +240,13 @@ export default function Intro() {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="absolute left-0 top-6 aspect-[3/4] w-3/5 overflow-hidden rounded-3xl border-[6px] border-white shadow-2xl"
           >
+            {/* Poster must be the video's FIRST FRAME at the video's DISPLAY aspect.
+                HandBrake left this clip anamorphic (720x720 stored, SAR 9:16, so it
+                paints 406x720); the poster had been grabbed at the stored size, so it
+                showed a face stretched half again too wide until the video took over.
+                Re-encoded square-pixel at 406x720 and the poster regenerated from it —
+                same aspect as the video means object-cover crops both identically and
+                nothing moves when playback starts. */}
             <video
               src="/photos/IMG_4836.mp4"
               poster="/photos/IMG_4836_poster.jpg"

@@ -16,6 +16,12 @@ const photos = [
     rotate: "rotate-1",
   },
   {
+    src: "/photos/kylie_bachelorette_2signs.jpg",
+    caption: "Cabin crew, times three",
+    rotate: "-rotate-2",
+    wide: true,
+  },
+  {
     src: "/photos/IMG_5497.jpg",
     caption: "Big Heads, No Tarps",
     rotate: "rotate-2",
@@ -29,6 +35,12 @@ const photos = [
     src: "/photos/IMG_5519.jpg",
     caption: "Takes a Big Head to hit 961",
     rotate: "rotate-1",
+  },
+  {
+    src: "/photos/kylie_bachelorette_field.jpg",
+    caption: "Field of Dreamy",
+    rotate: "rotate-2",
+    wide: true,
   },
   {
     src: "/photos/IMG_4690.jpg",

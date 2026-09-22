@@ -62,10 +62,16 @@ export type PriceRow = {
   note?: string;
 };
 
+// Row 0 is the parent line; rows after it render in teal directly beneath it,
+// close enough that "Additional copies" is read as copies OF THAT DESIGN. That
+// adjacency is the only thing saying so — the words are no longer in the label.
+// So if these rows are ever separated, reordered, or rendered anywhere but
+// directly under row 0, put "of that design" back in the label, or the block
+// reads as the per-ORDER volume discount the note above warns about.
 export const PRICE_ROWS: readonly PriceRow[] = [
   { label: "First print of a design", price: PRICE_FROM },
   {
-    label: "Each extra copy of that design",
+    label: "Additional copies",
     price: PRICE_DUPLICATE,
     note: `save ${DUPLICATE_SAVE_PERCENT}%`,
   },
