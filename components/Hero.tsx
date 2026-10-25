@@ -129,7 +129,7 @@ export default function Hero() {
       >
         <Image
           src="/photos/331A8865.jpg"
-          alt="Kid on a boat holding a giant BigHead on a stick"
+          alt="Kid on a boat holding a giant custom big head on a stick"
           fill
           priority
           sizes="(min-width: 768px) 36vw, 78vw"

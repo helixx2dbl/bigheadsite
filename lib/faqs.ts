@@ -11,6 +11,11 @@ import { PRICE_SHIPPING_PER_BOX, SHIPPING_HEADS_PER_BOX } from "@/lib/pricing";
 
 export const faqs = [
   {
+    id: "what",
+    q: "What is BigHead Builder?",
+    a: "BigHead Builder is an online big head builder: upload any photo, and it cuts out the head automatically and shows you a live preview of your custom big head. We print it about 24 inches tall on rigid board, cut it to order, and ship it to your door with the stick ready to attach. Fans bring them to races, graduations, bachelor parties and game day.",
+  },
+  {
     id: "size",
     q: "How big are the heads?",
     a: "Big. Each BigHead is about 24 inches tall, roughly three times life size, printed on rigid, lightweight board. It arrives flat with a sturdy stick and a strip of industrial-strength 3M double-sided tape - you press the stick on yourself, which takes about ten seconds. Easy to wave for a whole game, impossible to miss from the bleachers.",

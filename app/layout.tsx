@@ -35,7 +35,7 @@ const SITE_URL = "https://bigheadbuilder.com";
 // what counts as "clicking through" with it.
 const APP_HOST = new URL(BUILD_HREF).hostname;
 
-const TITLE = "BigHead Builder | Big Heads on a Stick";
+const TITLE = "BigHead Builder | Custom Big Heads on a Stick";
 const DESCRIPTION =
   "Turn any photo into a giant head on a stick. Upload a photo, we cut out the head, hand-assemble it, and ship it to your door.";
 

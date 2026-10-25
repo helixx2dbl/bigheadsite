@@ -30,12 +30,14 @@ export default function Intro() {
           {/* The page's ONE h1. The hero's "Your face. / Way bigger." is the bigger type,
               but it renders only after the loader clears — it sits behind client state, so
               it never reaches the served html and a crawler would find no h1 at all. This
-              line is server-rendered and describes the product besides. */}
+              line is server-rendered and describes the product besides. It leads with the brand
+              because people search for it as "big head builder" and the h1 is where that
+              match counts most. */}
           <motion.h1
             {...fadeUp}
             className="mt-4 text-4xl font-black leading-tight text-ink md:text-5xl"
           >
-            Turn any photo into a giant head on a stick.
+            BigHead Builder turns any photo into a giant head on a stick.
           </motion.h1>
           <motion.p {...fadeUp} className="mt-6 text-lg font-semibold text-ink/70">
             Race day, graduation, bachelor party, little league: nothing says
