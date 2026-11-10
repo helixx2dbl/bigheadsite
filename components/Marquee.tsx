@@ -14,7 +14,7 @@ export default function Marquee() {
     // a 32px text-2xl line plus py-4. The tilt moves the band's edges by ~17px at 1280 wide and
     // ~25px at 1920, so half the height keeps both corners over the seam to ~2400px wide.
     // The intro adds the same 32px to its top padding to make room.
-    <div className="-mb-8 overflow-x-clip pt-16 md:pt-24">
+    <div className="-mb-8 overflow-x-clip pt-16">
       <div className="-mx-4 -rotate-[1.5deg] overflow-hidden bg-teal py-4 shadow-md">
         <div className="animate-marquee flex w-max items-center gap-8 pr-8">
           {[...row, ...row].map((item, i) => (
