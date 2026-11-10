@@ -6,13 +6,17 @@ import BuildButton from "./BuildButton";
 import InfoLink from "./InfoLink";
 import { BOARD_MATERIAL } from "@/lib/compare";
 
+// The step illustrations live in public/steps/, NOT public/icons/. Apache ships
+// `Alias /icons/ <its own directory-listing icons>` in the default httpd.conf, and MAMP keeps
+// it on, so anything the site put under /icons/ was shadowed by that alias and 404'd locally
+// while production (no autoindex alias) served it fine. Keep site assets off that path.
 const steps = [
   {
     n: "01",
     title: "Upload a photo",
     body: "Any clear shot works. Our builder cuts out the head automatically. It only takes seconds.",
     accent: "bg-berry",
-    icon: "/icons/upload.svg",
+    icon: "/steps/upload.svg",
     faq: "photo",
     iconW: 239,
     iconH: 216,
@@ -22,7 +26,7 @@ const steps = [
     title: "Preview it BIG",
     body: "See your head on the stick instantly. Not feeling it? Swap in a new photo and try again.",
     accent: "bg-teal",
-    icon: "/icons/cutout.svg",
+    icon: "/steps/cutout.svg",
     iconW: 279,
     iconH: 241,
   },
@@ -31,7 +35,7 @@ const steps = [
     title: "We build it",
     body: `Every BigHead is about 24" tall, printed on ${BOARD_MATERIAL} - the stuff yard signs are made of - so it survives the wildest cheering.`,
     accent: "bg-berry",
-    icon: "/icons/printing.svg",
+    icon: "/steps/printing.svg",
     faq: "size",
     iconW: 256,
     iconH: 220,
@@ -41,7 +45,7 @@ const steps = [
     title: "It ships to you",
     body: "Ships flat in 1-2 business days with the stick and a strip of industrial-strength 3M tape. Press it on and you\u2019re done - flat-packing is what keeps it from arriving bent.",
     accent: "bg-teal",
-    icon: "/icons/shipping.svg",
+    icon: "/steps/shipping.svg",
     faq: "shipping",
     iconW: 328,
     iconH: 178,
