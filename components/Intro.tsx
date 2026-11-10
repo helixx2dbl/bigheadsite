@@ -22,9 +22,11 @@ const fadeUp = {
 export default function Intro() {
   return (
     // Full-width cream-deep so the intro reads as its own band between the hero (cream) and
-    // the comparison (cream). The section used to BE the max-width column, so a background on
+    // the comparison (cream). The marquee band above overhangs this section by 32px (its -mb-8)
+    // so the seam sits under the band; the top padding carries that 32px on top of the gap it
+    // wants anyway. The section used to BE the max-width column, so a background on
     // it would only have painted the middle; the column is now an inner div.
-    <section data-section="intro" className="bg-cream-deep pb-24 pt-14 md:pb-36 md:pt-20">
+    <section data-section="intro" className="bg-cream-deep pb-24 pt-22 md:pb-36 md:pt-28">
       <div className="mx-auto grid max-w-6xl items-center gap-14 px-6 md:grid-cols-2">
         <div>
           <motion.p {...fadeUp} className="font-script text-3xl text-teal">
