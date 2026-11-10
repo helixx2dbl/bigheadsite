@@ -14,6 +14,7 @@ import {
   SIZE_INCHES,
 } from "@/lib/pricing";
 import { faqs } from "@/lib/faqs";
+import { BOARD_MATERIAL } from "@/lib/compare";
 
 const SITE_URL = "https://bigheadbuilder.com";
 
@@ -60,6 +61,7 @@ export function productSchema() {
     description: `A giant printed cut-out of any face, about ${SIZE_INCHES} inches tall on rigid board, hand-assembled and shipped flat with a stick and mounting tape.`,
     image: [`${SITE_URL}/brand/social-card.jpg`],
     brand: { "@type": "Brand", name: "BigHead Builder" },
+    material: BOARD_MATERIAL,
     // lowPrice is the duplicate price because that is genuinely the cheapest a head can be
     // bought for — the second and subsequent copies of one design. highPrice is the first
     // print. An AggregateOffer rather than a single Offer, since there is no one price.

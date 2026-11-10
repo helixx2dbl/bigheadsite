@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import BuildButton from "./BuildButton";
 import InfoLink from "./InfoLink";
+import { BOARD_MATERIAL } from "@/lib/compare";
 
 const steps = [
   {
@@ -28,7 +29,7 @@ const steps = [
   {
     n: "03",
     title: "We build it",
-    body: "Every BigHead is about 24\" tall, printed on premium corrugated stock that survives the wildest cheering.",
+    body: `Every BigHead is about 24" tall, printed on ${BOARD_MATERIAL} - the stuff yard signs are made of - so it survives the wildest cheering.`,
     accent: "bg-berry",
     icon: "/icons/printing.svg",
     faq: "size",

@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import Marquee from "@/components/Marquee";
 import Intro from "@/components/Intro";
 import HowItWorks from "@/components/HowItWorks";
+import Compare from "@/components/Compare";
 import Referral from "@/components/Referral";
 import Gallery from "@/components/Gallery";
 import NotAHead from "@/components/NotAHead";
@@ -37,6 +38,7 @@ export default function Home() {
       <Gallery />
       <NotAHead />
       <HowItWorks />
+      <Compare />
       <Referral />
       <Testimonials />
       <FinalCta />

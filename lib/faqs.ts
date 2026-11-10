@@ -7,13 +7,19 @@
 //
 // Shipping figures are interpolated from lib/pricing.ts rather than typed in: these answers
 // promised free shipping for a while after checkout started charging.
-import { PRICE_SHIPPING_PER_BOX, SHIPPING_HEADS_PER_BOX } from "@/lib/pricing";
+import { PRICE_SHIPPING_PER_BOX, SHIPPING_HEADS_PER_BOX, SIZE_INCHES } from "@/lib/pricing";
+import { BOARD_MATERIAL, OTHERS_SIZE_INCHES } from "@/lib/compare";
 
 export const faqs = [
   {
     id: "what",
     q: "What is BigHead Builder?",
     a: "BigHead Builder is an online big head builder: upload any photo, and it cuts out the head automatically and shows you a live preview of your custom big head. We print it about 24 inches tall on rigid board, cut it to order, and ship it to your door with the stick ready to attach. Fans bring them to races, graduations, bachelor parties and game day.",
+  },
+  {
+    id: "different",
+    q: "How is a BigHead different from other big heads on a stick?",
+    a: `Three ways. Ours are ${SIZE_INCHES} inches tall where most are around ${OTHERS_SIZE_INCHES}. They're printed on ${BOARD_MATERIAL} instead of foam board or cardboard, so they don't dent, crease or go soft in the rain. And you see a live digital proof of your exact cutout before you pay, for free - not a proof emailed after you order, and not a paid add-on.`,
   },
   {
     id: "size",
@@ -43,7 +49,7 @@ export const faqs = [
   {
     id: "durability",
     q: "Will it survive rain and rowdy crowds?",
-    a: "BigHeads have a weather-resistant coating that shrugs off drizzle, spilled drinks, and confetti. They're built for full seasons of tailgates. Just don't use one as a paddle.",
+    a: `Yes. Every BigHead is printed on ${BOARD_MATERIAL} - the same rigid, waterproof stuff yard signs are made of, not foam or cardboard - with a weather-resistant coating on the print that shrugs off drizzle, spilled drinks, and confetti. They're built for full seasons of tailgates. Just don't use one as a paddle.`,
   },
   {
     id: "referral",
