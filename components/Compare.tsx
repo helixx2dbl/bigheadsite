@@ -6,6 +6,10 @@ import { COMPARE_ROWS } from "@/lib/compare";
 import BuildButton from "./BuildButton";
 import InfoLink from "./InfoLink";
 
+// Sits between the intro and the gallery. Plain cream rather than the gallery's cream-deep,
+// so the two do not run together as one band, and a short top pad because the intro above
+// already ends in a deep bottom margin.
+//
 // Us against the typical big-head site, on the three things that actually differ: the
 // size of the head, what it is printed on, and whether you get to see it before you pay.
 // The copy lives in lib/compare.ts; this file is only the layout.
@@ -64,7 +68,7 @@ export default function Compare() {
   const last = COMPARE_ROWS.length - 1;
 
   return (
-    <section data-section="compare" className="bg-cream-deep py-16 md:py-24">
+    <section data-section="compare" className="bg-cream pb-20 pt-4 md:pb-28 md:pt-6">
       <div className="mx-auto max-w-5xl px-6">
         <motion.p {...fadeUp} className="text-center font-script text-3xl text-berry">
           why ours?

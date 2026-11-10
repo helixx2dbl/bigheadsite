@@ -35,10 +35,10 @@ export default function Home() {
       <Hero />
       <Marquee />
       <Intro />
+      <Compare />
       <Gallery />
       <NotAHead />
       <HowItWorks />
-      <Compare />
       <Referral />
       <Testimonials />
       <FinalCta />
