@@ -21,8 +21,11 @@ const fadeUp = {
 
 export default function Intro() {
   return (
-    <section data-section="intro" className="mx-auto max-w-6xl px-6 pb-24 pt-14 md:pb-36 md:pt-20">
-      <div className="grid items-center gap-14 md:grid-cols-2">
+    // Full-width cream-deep so the intro reads as its own band between the hero (cream) and
+    // the comparison (cream). The section used to BE the max-width column, so a background on
+    // it would only have painted the middle; the column is now an inner div.
+    <section data-section="intro" className="bg-cream-deep pb-24 pt-14 md:pb-36 md:pt-20">
+      <div className="mx-auto grid max-w-6xl items-center gap-14 px-6 md:grid-cols-2">
         <div>
           <motion.p {...fadeUp} className="font-script text-3xl text-teal">
             made for superfans
